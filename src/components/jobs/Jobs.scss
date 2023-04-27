@@ -1,0 +1,18 @@
+.job-wrapper {
+  width: 773px;
+  display: flex;
+  flex-direction: column;
+  .job-item {
+    height: 137px;
+    background: #FFFFFF;
+    border: 1px solid #EAEBED;
+    border-radius: 12px;
+    padding: 24px;
+    a {
+      font-weight: 600;
+      font-size: 20px;
+      color: #5E96FC;
+      text-decoration: none;
+    }
+  }
+}
