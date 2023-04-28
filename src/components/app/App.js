@@ -8,7 +8,7 @@ const App = () => {
       <Header/>
       {/*<Jobs/>*/}
       <Filter/>
-      <JobService/>
+      {/*<JobService/>*/}
     </div>
   );
 }
