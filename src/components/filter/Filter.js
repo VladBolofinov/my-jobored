@@ -1,8 +1,11 @@
 import './Filter.scss';
-import { createStyles, rem, Select } from '@mantine/core';
-import { IconChevronDown } from '@tabler/icons-react';
-import { IconChevronUp } from '@tabler/icons-react';
-import React from "react";
+import { createStyles, rem, Select, TextInput } from '@mantine/core';
+import { IconChevronUp, IconSelector, IconChevronDown } from '@tabler/icons-react';
+import { Button } from '@mantine/core';
+
+
+
+
 
 const useStyles = createStyles((theme) => ({
 
@@ -28,20 +31,28 @@ const Filter = () => {
                 rightSection={<IconChevronDown size="1rem" />}
                 styles={(theme) => ({
                     item: {
-                        // applies styles to selected item
                         '&[data-selected]': {
                             '&, &:hover': {
-                                backgroundColor:
-                                    theme.colorScheme === 'dark' ? theme.colors.teal[9] : theme.colors.teal[1],
-                                color: theme.colorScheme === 'dark' ? theme.white : theme.colors.teal[9],
+                                backgroundColor: '#5E96FC',
                             },
                         },
-
-                        // applies styles to hovered item (with mouse or keyboard)
-                        '&[data-hovered]': {},
+                        '&[data-hovered]': {
+                            backgroundColor: '#DEECFF'},
                     },
                 })}
             />
+            <p className='filter-subheader second'>Оклад</p>
+            <TextInput
+                placeholder="От"
+                rightSection={<IconSelector size="1rem" />}
+            />
+            <TextInput
+                placeholder="До"
+                rightSection={<IconSelector size="1rem" />}
+            />
+            <Button color="#5E96FC">
+                Применить
+            </Button>
         </div>
     );
 }

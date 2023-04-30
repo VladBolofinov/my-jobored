@@ -44,7 +44,7 @@ class TestService {
     transformDataCatalogues = (res) => {
         const arrData = [];
         res.forEach(item => {
-            arrData.push(item);//item.title
+            arrData.push(item.title);
         });
         console.log(arrData);
     }
