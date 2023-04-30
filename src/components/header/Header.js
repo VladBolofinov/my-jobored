@@ -1,6 +1,7 @@
 import './Header.scss';
 import '../../style.scss';
 import logo from '../../img/icons/logo.svg'
+import React from "react";
 const Header = () => {
     return (
         <header className='wrapper'>
@@ -19,3 +20,5 @@ const Header = () => {
 }
 
 export default Header;
+
+

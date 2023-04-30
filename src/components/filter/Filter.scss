@@ -1,3 +1,4 @@
+
 .filter-wrapper {
   padding: 20px;
   width: 315px;
@@ -5,4 +6,46 @@
   background: #FFFFFF;
   border: 1px solid #EAEBED;
   border-radius: 12px;
+
+  .filter-header {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+  }
+  .filter-subheader {
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 32px;
+  }
+  .filter-input-catalogues {
+    width: 275px;
+    height: 42px;
+    background: #FFFFFF;
+    border: 1px solid #D5D6DC;
+    border-radius: 8px;
+    margin-top: 8px;
+  }
+  select {
+    width: 350px;
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 10px;
+    border: none;
+    appearance: none;
+  }
+
+  select option {
+    background-color: yellow;
+    color: blueviolet;
+    padding: 10px;
+    border-radius: 8px;
+  }
+}
+
+
+li {
+  background-color: #5E96FC;
+  width: 100px;
+  height: 25px;
+  margin-top: 15px;
 }
