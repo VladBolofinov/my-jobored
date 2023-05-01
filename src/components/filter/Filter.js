@@ -5,13 +5,14 @@ import { Button } from '@mantine/core';
 
 
 
-
+//чел тебе тут еще нужно поменять стрелочки в айконшеврон
 
 const useStyles = createStyles((theme) => ({
 
 }));
 
-const Filter = () => {
+const Filter = (props) => {
+    const {options} = props;
     // You can add these classes as classNames to any Mantine input, it will work the same
     const { classes } = useStyles();
     const toggleChevron = () => {
@@ -24,7 +25,7 @@ const Filter = () => {
             <Select
                 mt="md"
                 withinPortal
-                data={['React', 'Angular', 'Svelte', 'Vue', 'React', 'Angular', 'Svelte', 'Vue']}
+                data={options}
                 placeholder="Выберите отрасль"
                 classNames={classes}
                 maxDropdownHeight={150}

@@ -1,4 +1,4 @@
-class TestService {
+class JobService {
     _apiBase = 'https://startup-summer-2023-proxy.onrender.com/';
     _inputData = '?login=sergei.stralenia@gmail.com&password=paralect123&client_id=2356&client_secret=v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948&hr=0';
     _secretKey = 'GEU4nvd3rej*jeh.eqp';
@@ -46,11 +46,15 @@ class TestService {
         res.forEach(item => {
             arrData.push(item.title);
         });
-        console.log(arrData);
+        return arrData;
+    }
+
+    transformDataVacancies = () => {
+
     }
 
 //ПЕРЕПИШИ ЭТО ВСЕ НА ХУК А НЕ КЛАСС
 
 }
 
-export default TestService;
+export default JobService;

@@ -1,22 +1,25 @@
 import Header from "../header/Header";
 import Jobs from "../jobs/Jobs";
-import JobService from "../services/JobService";
 import Filter from "../filter/Filter";
+import JobService from "../services/JobService";
+import {useEffect, useState} from "react";
+
+
 const App = () => {
+    const jobService = new JobService();
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        jobService.getCatalogues().then((catalogues) => setData(catalogues));
+    }, []);
+
+
   return (
     <div className="App">
       <Header/>
-      {/*<Jobs/>*/}
-        <Filter
-            options={[
-                { value: 'option1', label: 'Option 1' },
-                { value: 'option2', label: 'Option 2' },
-                { value: 'option3', label: 'Option 3' }
-            ]}
-            onSelect={(option) => console.log(`Selected option: ${option.label}`)}
-        />
-
-        {/*<JobService/>*/}
+      <Jobs/>
+      <Filter options={data}/>
     </div>
   );
 }
