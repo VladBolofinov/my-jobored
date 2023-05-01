@@ -2,17 +2,39 @@
   width: 773px;
   display: flex;
   flex-direction: column;
+  margin: 40px 0 0 505px;
   .job-item {
     height: 137px;
     background: #FFFFFF;
     border: 1px solid #EAEBED;
     border-radius: 12px;
     padding: 24px;
+    margin-bottom: 16px;
+    p {
+      margin-top: 12px;
+      span {
+        color: #7B7C88;
+      }
+    }
+    img {
+      float: left;
+      margin-right: 8px;
+    }
     a {
       font-weight: 600;
       font-size: 20px;
       color: #5E96FC;
       text-decoration: none;
     }
+  }
+  .mantine-Button-root {
+    width: 83px;
+    height: 32px;
+    background: #5E96FC;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  .mantine-Input-wrapper {
+    margin-bottom: 16px;
   }
 }

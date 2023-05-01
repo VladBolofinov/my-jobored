@@ -57,7 +57,7 @@ class JobService {
             prof: res.profession,
             companyName: res.firm_name,
             town: res.town.title,
-            professionType: res.catalogues[0].title,
+            //professionType: res.catalogues[0].title,//бывает не отображает эту графу
             workType: res.type_of_work.title,
             curr: res.currency,
             paymentTo: res.payment_to,
