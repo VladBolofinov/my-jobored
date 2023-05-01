@@ -9,7 +9,7 @@ const Jobs = (props) => {
     const {dataVacancies} = props;
     const [itemsCount, setItemsCount] = useState(4);
     const theme = useMantineTheme();
-    console.log(props);
+    //console.log(props);
     const renderItems = () => {
         const items = dataVacancies.slice(0, itemsCount).map(item => {
             return (

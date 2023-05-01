@@ -34,14 +34,21 @@ class JobService {
 
     transformDataCatalogues = (res) => {
         const arrData = [];
+        const arrKeys = [];
         res.forEach(item => {
             arrData.push(item.title);
+            arrKeys.push(item.key);
         });
-        return arrData;
+        //console.log(arrData);
+        //console.log(arrKeys);
+        return {
+            name: arrData,
+            keys: arrKeys
+        };
     }
 
     getVacancies = async () => {
-        const res = await this.getResource(`${this._apiBase}2.0/vacancies/`,
+        const res = await this.getResource(`${this._apiBase}2.0/vacancies/?keyword=программист&payment_from=55555555555555&payment_to=30555555555555555555550&published=1&catalogues=33`,
             {
                 method: 'GET',
                 headers: {
@@ -65,6 +72,19 @@ class JobService {
             vacancyDescr: res.vacancyRichText
         };
     }
+
+    /*getFilteredVacancies = async () => {
+        const res = await this.getResource(`${this._apiBase}2.0/vacancies/?payment_from=100&payment_to=300&published=1`,
+            {
+                method: 'GET',
+                headers: {
+                    'x-secret-key': `${this._secretKey}`,
+                    'X-Api-App-Id': `${this._secondHeader}`
+                }
+            });
+        console.log(res);
+        //return res.objects.map(this.transformDataVacancies) //;
+    }*/
 
 //ПЕРЕПИШИ ЭТО ВСЕ НА ХУК А НЕ КЛАСС
 
