@@ -21,16 +21,7 @@ class JobService {
                 }
             });
     }
-    getVacancies = () => {
-        return this.getResource(`${this._apiBase}2.0/vacancies/`,
-            {
-                method: 'GET',
-                headers: {
-                    'x-secret-key': `${this._secretKey}`,
-                    'X-Api-App-Id': `${this._secondHeader}`
-                }
-            });
-    }
+
     getCatalogues = async () => {
         const res = await this.getResource(`${this._apiBase}2.0/catalogues/`,
             {
@@ -49,8 +40,30 @@ class JobService {
         return arrData;
     }
 
-    transformDataVacancies = () => {
-
+    getVacancies = async () => {
+        const res = await this.getResource(`${this._apiBase}2.0/vacancies/`,
+            {
+                method: 'GET',
+                headers: {
+                    'x-secret-key': `${this._secretKey}`,
+                    'X-Api-App-Id': `${this._secondHeader}`
+                }
+            });
+        //console.log(res.objects);
+        return res.objects.map(this.transformDataVacancies) //;
+    }
+    transformDataVacancies = (res) => {
+        return {
+            prof: res.profession,
+            companyName: res.firm_name,
+            town: res.town.title,
+            professionType: res.catalogues[0].title,
+            workType: res.type_of_work.title,
+            curr: res.currency,
+            paymentTo: res.payment_to,
+            paymentFrom: res.payment_from,
+            vacancyDescr: res.vacancyRichText
+        };
     }
 
 //ПЕРЕПИШИ ЭТО ВСЕ НА ХУК А НЕ КЛАСС
