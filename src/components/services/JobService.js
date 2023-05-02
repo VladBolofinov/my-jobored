@@ -56,6 +56,7 @@ class JobService {
                     'X-Api-App-Id': `${this._secondHeader}`
                 }
             });
+
         //console.log(res.objects);
         return res.objects.map(this.transformDataVacancies) //;
     }
