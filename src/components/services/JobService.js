@@ -57,6 +57,7 @@ class JobService {
                 }
             });
 
+
         //console.log(res.objects);
         return res.objects.map(this.transformDataVacancies) //;
     }
