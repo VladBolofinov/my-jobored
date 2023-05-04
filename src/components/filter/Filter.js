@@ -24,7 +24,6 @@ const Filter = (props) => {
     const [keyValue, setKeyValue] = useState('');
     const [salaryFrom, setSalaryFrom] = useState(0);
     const [salaryTo, setSalaryTo] = useState(0);
-    //console.log(keys[options.indexOf(inputValue)]);
 
     return (
         <div className='filter-wrapper'>

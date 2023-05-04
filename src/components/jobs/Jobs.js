@@ -6,17 +6,19 @@ import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import { Button } from '@mantine/core';
 import JobService from "../services/JobService";
 
-const Jobs = (props) => {
+const Jobs = () => {
     const [dataVacancy, setDataVacansy] = useState([]);
+    const [itemsCount, setItemsCount] = useState(4);
+    const [profNameValue, setProfNameValue] = useState('');
+    const jobService = new JobService();
+    const theme = useMantineTheme();
+    const loadMore = () => {
+        setItemsCount(itemsCount + 4);
+    }
+
     useEffect(()=>{
         jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
     },[]);
-
-    //const {dataVacancies} = props;
-    const [itemsCount, setItemsCount] = useState(4);
-    const jobService = new JobService();
-    const theme = useMantineTheme();
-    //console.log(props);
     const renderItems = () => {
         const items = dataVacancy.slice(0, itemsCount).map(item => {
             return (
@@ -33,11 +35,6 @@ const Jobs = (props) => {
         return items;
     }
 
-    const loadMore = () => {
-        setItemsCount(itemsCount + 4);
-    }
-    const [profNameValue, setProfNameValue] = useState('');
-
     return (
         <section className='job-wrapper'>
             <TextInput
@@ -47,13 +44,14 @@ const Jobs = (props) => {
                 size="md"
                 rightSection={
                     <Button
-                        onClick={() => jobService.getVacancies(profNameValue).then((vacancy) => setDataVacansy(vacancy))}>
+                        onClick={() => jobService.getVacancies(profNameValue)
+                                                 .then((vacancy) => setDataVacansy(vacancy))}>
                         Поиск
                     </Button>
                 }
                 placeholder="Введите название вакансии"
                 rightSectionWidth={100}
-                {...props}
+
             />
             {renderItems()}
             {itemsCount < dataVacancy.length &&
