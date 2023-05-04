@@ -10,14 +10,14 @@ const App = () => {
 
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
-    const [dataVacancy, setDataVacansy] = useState([]);
+    //const [dataVacancy, setDataVacansy] = useState([]);
 
     useEffect(() => {
         jobService.getCatalogues().then((catalogues) => {
             setData(catalogues.name);
             setKeys(catalogues.keys);
         });
-        jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
+        //jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
         //jobService.getFilteredVacancies();
     }, []);
 
@@ -25,7 +25,7 @@ const App = () => {
   return (
     <div className="App">
       <Header/>
-      <Jobs dataVacancies={dataVacancy}/>
+      <Jobs />
       <Filter options={data} keys={keys}/>
     </div>
   );

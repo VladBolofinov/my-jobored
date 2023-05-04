@@ -19,19 +19,22 @@ const Filter = (props) => {
     const toggleChevron = () => {
         //напиши тут чтобы менялась стрелочка при переключении
     }
+
     const [inputValue, setInputValue] = useState('');
     const [keyValue, setKeyValue] = useState('');
+    const [salaryFrom, setSalaryFrom] = useState(0);
+    const [salaryTo, setSalaryTo] = useState(0);
     //console.log(keys[options.indexOf(inputValue)]);
 
-    const onSetKey = () => {
-        setKeyValue(keys[options.indexOf(inputValue)]);
-    }
     return (
         <div className='filter-wrapper'>
             <p className='filter-header'>Фильтры</p>
             <p className='filter-subheader'>Отрасль</p>
             <Select
-                onChange={setInputValue}
+                onChange={(value) => {
+                    setInputValue(value);
+                    setKeyValue(keys[options.indexOf(value)]);
+                }}
                 mt="md"
                 withinPortal
                 data={options}
@@ -53,15 +56,16 @@ const Filter = (props) => {
             />
             <p className='filter-subheader second'>Оклад</p>
             <TextInput
+                onChange={(event) => setSalaryFrom(event.currentTarget.value)}
                 placeholder="От"
                 rightSection={<IconSelector size="1rem" />}
             />
             <TextInput
+                onChange={(event) => setSalaryTo(event.currentTarget.value)}
                 placeholder="До"
                 rightSection={<IconSelector size="1rem" />}
             />
             <Button
-                onClick={onSetKey}
                 color="#5E96FC">
                 Применить
             </Button>
