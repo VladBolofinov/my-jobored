@@ -9,6 +9,9 @@ const App = () => {
     const jobService = new JobService();
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
+    const [dataFromFilter, setDataFromFilter] = useState({keyValue:'',
+                                                                   salaryFrom:'',
+                                                                   salaryTo:''});
 
     useEffect(() => {
         jobService.getCatalogues().then((catalogues) => {
@@ -17,11 +20,15 @@ const App = () => {
         });
     }, []);
 
+    const handleData = (newData) => {
+        setDataFromFilter(newData);
+    };
+
   return (
     <div className="App">
       <Header/>
-      <Jobs />
-      <Filter options={data} keys={keys}/>
+      <Jobs filteredData={dataFromFilter} />
+      <Filter options={data} keys={keys} onData={handleData}/>
     </div>
   );
 }

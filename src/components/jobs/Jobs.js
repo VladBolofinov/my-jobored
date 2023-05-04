@@ -6,10 +6,12 @@ import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import { Button } from '@mantine/core';
 import JobService from "../services/JobService";
 
-const Jobs = () => {
+const Jobs = (props) => {
+    const {filteredData} = props;
     const [dataVacancy, setDataVacansy] = useState([]);
     const [itemsCount, setItemsCount] = useState(4);
     const [profNameValue, setProfNameValue] = useState('');
+
     const jobService = new JobService();
     const theme = useMantineTheme();
     const loadMore = () => {
@@ -26,7 +28,7 @@ const Jobs = () => {
                     <a href="#">{item.prof}</a>
                     <p>{(item.paymentFrom && item.paymentTo)
                         ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
-                        : `З/п ${item.paymentFrom || item.paymentTo}`}
+                        : `З/п ${item.paymentFrom || item.paymentTo || 'не указана' }`}
                         <span>.</span> {item.workType}</p> {/*доделай эту точку!!!*/}
                     <p className='location'><img className='location' src={location} alt="location-icon"/>{item.town}</p>
                 </div>
@@ -44,7 +46,7 @@ const Jobs = () => {
                 size="md"
                 rightSection={
                     <Button
-                        onClick={() => jobService.getVacancies(profNameValue)
+                        onClick={() => jobService.getVacancies(profNameValue,filteredData.salaryFrom,filteredData.salaryTo,filteredData.keyValue)
                                                  .then((vacancy) => setDataVacansy(vacancy))}>
                         Поиск
                     </Button>

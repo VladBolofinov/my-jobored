@@ -25,6 +25,12 @@ const Filter = (props) => {
     const [salaryFrom, setSalaryFrom] = useState(0);
     const [salaryTo, setSalaryTo] = useState(0);
 
+    const handleSendData = () => {
+        props.onData({keyValue:keyValue,
+                      salaryFrom:salaryFrom,
+                      salaryTo:salaryTo});
+    };
+
     return (
         <div className='filter-wrapper'>
             <p className='filter-header'>Фильтры</p>
@@ -65,6 +71,7 @@ const Filter = (props) => {
                 rightSection={<IconSelector size="1rem" />}
             />
             <Button
+                onClick={handleSendData}
                 color="#5E96FC">
                 Применить
             </Button>
