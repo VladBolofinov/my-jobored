@@ -19,7 +19,8 @@ const Jobs = (props) => {
     }
 
     useEffect(()=>{
-        jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
+        jobService.getToken();
+        //jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
     },[]);
     const renderItems = () => {
         const items = dataVacancy.slice(0, itemsCount).map(item => {
