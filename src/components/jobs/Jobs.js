@@ -5,7 +5,7 @@ import { TextInput, TextInputProps, ActionIcon, useMantineTheme, Button } from '
 import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import JobService from "../services/JobService";
 
-const Jobs = ({filteredData, dataVacansy, onTogleVacansy}) => {
+const Jobs = ({dataFromFilter, vacancyList, onTogleVacancy}) => {
 
     const [itemsCount, setItemsCount] = useState(4);
     const [profNameValue, setProfNameValue] = useState('');
@@ -16,15 +16,13 @@ const Jobs = ({filteredData, dataVacansy, onTogleVacansy}) => {
         setItemsCount(itemsCount + 4);
     }
 
-
-
     useEffect(()=>{
         jobService.getToken();
         //jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
     },[]);
 
     const renderItems = () => {
-        const items = dataVacansy.slice(0, itemsCount).map(item => {
+        const items = vacancyList.slice(0, itemsCount).map(item => {
             return (
                 <div className="job-item">
                     <a href='#'>{item.prof}</a>
@@ -48,8 +46,8 @@ const Jobs = ({filteredData, dataVacansy, onTogleVacansy}) => {
                 size="md"
                 rightSection={
                     <Button
-                        onClick={() => jobService.getVacancies(profNameValue,filteredData.salaryFrom,filteredData.salaryTo,filteredData.keyValue)
-                                                 .then(onTogleVacansy)}>
+                        onClick={() => jobService.getVacancies(profNameValue,dataFromFilter.salaryFrom,dataFromFilter.salaryTo,dataFromFilter.keyValue)
+                                                 .then(onTogleVacancy)}>
                         Поиск
                     </Button>
                 }
@@ -58,7 +56,7 @@ const Jobs = ({filteredData, dataVacansy, onTogleVacansy}) => {
 
             />
             {renderItems()}
-            {itemsCount < dataVacansy.length &&
+            {itemsCount < vacancyList.length &&
                 <button onClick={loadMore}>Показать еще</button>
             }
         </section>

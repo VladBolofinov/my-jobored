@@ -64,7 +64,6 @@ class JobService {
 
         const res = await this.getResource(`${this._apiBase}2.0/vacancies/?keyword=${keyword}&payment_from=${fromValue}&payment_to=${toValue}&published=1&catalogues=${workId}&page=1&count=20`,
             {
-
                 method: 'GET',
                 headers: {
                     'x-secret-key': `${this._secretKey}`,
@@ -72,8 +71,8 @@ class JobService {
                     Authorization: `Bearer ${this._token}`
                 }
             });
+        console.log(res);
         //console.log(this._token);
-        console.log(this._token);
         return res.objects.map(this.transformDataVacancies) //;
     }
 

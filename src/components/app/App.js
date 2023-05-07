@@ -8,14 +8,12 @@ const App = () => {
     const jobService = new JobService();
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
-    const [dataFromFilter, setDataFromFilter] = useState({keyValue:'',
-                                                                   salaryFrom:'',
-                                                                   salaryTo:''});
-    const [dataVacancy, setDataVacansy] = useState([]);
+    const [dataFromFilter, setDataFromFilter] = useState({keyValue:'', salaryFrom:'', salaryTo:''});
+    const [vacancyList, setVacancyList] = useState([]);
     const [dataFromJobs, setDataFromJobs] = useState()
 
-    const onToggleVacansy = (vacancy) => {
-        setDataVacansy(vacancy);
+    const onToggleVacancy = (vacancy) => {
+        setVacancyList(vacancy);
     }
 
     useEffect(() => {
@@ -23,7 +21,7 @@ const App = () => {
             setData(catalogues.name);
             setKeys(catalogues.keys);
         });
-        jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
+        jobService.getVacancies().then((vacancy) => setVacancyList(vacancy));
     }, []);
 
     const handleData = (newData) => {
@@ -36,7 +34,7 @@ const App = () => {
   return (
     <div className="App">
       <Header/>
-      <Jobs filteredData={dataFromFilter} dataVacansy={dataVacancy} onTogleVacansy={onToggleVacansy}/>
+      <Jobs dataFromFilter={dataFromFilter} vacancyList={vacancyList} onTogleVacancy={onToggleVacancy}/>
       <Filter options={data} keys={keys} onData={handleData}/>
     </div>
   );
