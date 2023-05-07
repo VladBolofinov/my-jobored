@@ -39,8 +39,6 @@ class JobService {
             arrData.push(item.title);
             arrKeys.push(item.key);
         });
-        //console.log(arrData);
-        //console.log(arrKeys);
         return {
             name: arrData,
             keys: arrKeys
@@ -51,9 +49,8 @@ class JobService {
                           fromValue = 0,
                           toValue=0,
                           workId=0) => {
-        //const test = 'тракторист';
-        const res = await this.getResource(`${this._apiBase}2.0/vacancies/?keyword=${keyword}&payment_from=${fromValue}&payment_to=${toValue}&published=1&catalogues=${workId}&page=1&count=20`,
-            {     //?keyword=программист&payment_from=55555555555555&payment_to=30555555555555555555550&published=1&catalogues=33
+        const res = await this.getResource(`${this._apiBase}2.0/vacancies/?keyword=${keyword}&payment_from=${fromValue}&payment_to=${toValue}&published=1&catalogues=${workId}&page=0&count=20`,
+            {
                 method: 'GET',
                 headers: {
                     'x-secret-key': `${this._secretKey}`,
@@ -65,10 +62,11 @@ class JobService {
     }
     transformDataVacancies = (res) => {
         return {
+            //id: 5555,
             prof: (res.profession.length > 60) ? res.profession.slice(0, 60) + '...' : res.profession,
             companyName: res.firm_name,
             town: res.town.title,
-            //professionType: res.catalogues[0].title,//бывает не отображает эту графу
+            professionType: res.catalogues[0].title,//бывает не отображает эту графу
             workType: res.type_of_work.title,
             curr: res.currency,
             paymentTo: res.payment_to,
@@ -77,18 +75,6 @@ class JobService {
         };
     }
 
-    /*getFilteredVacancies = async () => {
-        const res = await this.getResource(`${this._apiBase}2.0/vacancies/?payment_from=100&payment_to=300&published=1`,
-            {
-                method: 'GET',
-                headers: {
-                    'x-secret-key': `${this._secretKey}`,
-                    'X-Api-App-Id': `${this._secondHeader}`
-                }
-            });
-        console.log(res);
-        //return res.objects.map(this.transformDataVacancies) //;
-    }*/
 
 //ПЕРЕПИШИ ЭТО ВСЕ НА ХУК А НЕ КЛАСС
 

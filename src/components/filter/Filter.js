@@ -3,17 +3,12 @@ import { createStyles, rem, Select, TextInput } from '@mantine/core';
 import { IconChevronUp, IconSelector, IconChevronDown } from '@tabler/icons-react';
 import { Button } from '@mantine/core';
 import { useState } from "react";
-
-
 //чел тебе тут еще нужно поменять стрелочки в айконшеврон
 
-
-
-const Filter = (props) => {
+const Filter = ({options, keys, onData}) => {
     const useStyles = createStyles((theme) => ({
 
     }));
-    const {options, keys} = props;
     // You can add these classes as classNames to any Mantine input, it will work the same
     const { classes } = useStyles();
     const toggleChevron = () => {
@@ -26,7 +21,7 @@ const Filter = (props) => {
     const [salaryTo, setSalaryTo] = useState(0);
 
     const handleSendData = () => {
-        props.onData({keyValue:keyValue,
+            onData({keyValue:keyValue,
                       salaryFrom:salaryFrom,
                       salaryTo:salaryTo});
     };

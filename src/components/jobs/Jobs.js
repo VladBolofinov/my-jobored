@@ -1,14 +1,12 @@
 import './Jobs.scss';
 import location from '../../img/icons/location.svg';
 import { useState, useEffect } from 'react';
-import { TextInput, TextInputProps, ActionIcon, useMantineTheme } from '@mantine/core';
+import { TextInput, TextInputProps, ActionIcon, useMantineTheme, Button } from '@mantine/core';
 import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
-import { Button } from '@mantine/core';
 import JobService from "../services/JobService";
 
-const Jobs = (props) => {
-    const {filteredData} = props;
-    const [dataVacancy, setDataVacansy] = useState([]);
+const Jobs = ({filteredData, dataVacansy, onTogleVacansy}) => {
+
     const [itemsCount, setItemsCount] = useState(4);
     const [profNameValue, setProfNameValue] = useState('');
 
@@ -18,14 +16,11 @@ const Jobs = (props) => {
         setItemsCount(itemsCount + 4);
     }
 
-    useEffect(()=>{
-        jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
-    },[]);
     const renderItems = () => {
-        const items = dataVacancy.slice(0, itemsCount).map(item => {
+        const items = dataVacansy.slice(0, itemsCount).map(item => {
             return (
                 <div className="job-item">
-                    <a href="#">{item.prof}</a>
+                    <a href='#'>{item.prof}</a>
                     <p>{(item.paymentFrom && item.paymentTo)
                         ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
                         : `З/п ${item.paymentFrom || item.paymentTo || 'не указана' }`}
@@ -47,7 +42,7 @@ const Jobs = (props) => {
                 rightSection={
                     <Button
                         onClick={() => jobService.getVacancies(profNameValue,filteredData.salaryFrom,filteredData.salaryTo,filteredData.keyValue)
-                                                 .then((vacancy) => setDataVacansy(vacancy))}>
+                                                 .then(onTogleVacansy)}>
                         Поиск
                     </Button>
                 }
@@ -56,7 +51,7 @@ const Jobs = (props) => {
 
             />
             {renderItems()}
-            {itemsCount < dataVacancy.length &&
+            {itemsCount < dataVacansy.length &&
                 <button onClick={loadMore}>Показать еще</button>
             }
         </section>
