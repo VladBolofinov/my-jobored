@@ -16,6 +16,13 @@ const Jobs = ({filteredData, dataVacansy, onTogleVacansy}) => {
         setItemsCount(itemsCount + 4);
     }
 
+
+
+    useEffect(()=>{
+        jobService.getToken();
+        //jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
+    },[]);
+
     const renderItems = () => {
         const items = dataVacansy.slice(0, itemsCount).map(item => {
             return (
