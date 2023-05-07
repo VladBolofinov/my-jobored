@@ -58,14 +58,10 @@ class JobService {
                           toValue=0,
                           workId=0) => {
 
-        const res = await this.getResource(`${this._apiBase}2.0/vacancies/?keyword=${keyword}&payment_from=${fromValue}&payment_to=${toValue}&published=1&catalogues=${workId}&page=0&count=20`,
-            {
-
-        //const test = 'тракторист';
-
         if (!this._token) {
             await this.getToken();
         }
+
         const res = await this.getResource(`${this._apiBase}2.0/vacancies/?keyword=${keyword}&payment_from=${fromValue}&payment_to=${toValue}&published=1&catalogues=${workId}&page=1&count=20`,
             {
 
@@ -80,6 +76,7 @@ class JobService {
         console.log(this._token);
         return res.objects.map(this.transformDataVacancies) //;
     }
+
     transformDataVacancies = (res) => {
         return {
             //id: 5555,
