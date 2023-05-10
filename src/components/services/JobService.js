@@ -75,11 +75,27 @@ class JobService {
         //console.log(this._token);
         return res.objects.map(this.transformDataVacancies) //;
     }
+    getOneVacancy = async (id) => {
 
+        if (!this._token) {
+            await this.getToken();
+        }
+
+        const res = await this.getResource(`${this._apiBase}2.0/vacancies/${id}`,
+            {
+                method: 'GET',
+                headers: {
+                    'x-secret-key': `${this._secretKey}`,
+                    'X-Api-App-Id': `${this._secondHeader}`,
+                    Authorization: `Bearer ${this._token}`
+                }
+            });
+        return res.objects.map(this.transformDataVacancies);
+    }
     transformDataVacancies = (res) => {
         return {
             id: res.id,
-            prof: (res.profession.length > 60) ? res.profession.slice(0, 60) + '...' : res.profession,
+            prof: (res.profession.length > 60) ? res.profession.slice(0, 60) + '...' : res.profession,//подумай тут еще как лучше
             companyName: res.firm_name,
             town: res.town.title,
             professionType: res.catalogues[0].title,//бывает не отображает эту графу

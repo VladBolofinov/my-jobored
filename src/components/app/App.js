@@ -55,7 +55,7 @@ const App = () => {
                             </>
                         }
                     />
-                    <Route path="/vacancy-item" element={<JobsItem />} />
+                    <Route path="/id/:id" element={<JobsItem vacancyList={vacancyList}/>} />
                 </Routes>
             </div>
         </Router>

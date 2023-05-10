@@ -25,8 +25,8 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy}) => {
     const renderItems = () => {
         const items = vacancyList.slice(0, itemsCount).map(item => {
             return (
-                <div className="job-item">
-                    <Link to={`/id${item.id}`}>{item.prof}</Link>
+                <div className="job-item" key={item.id}>
+                    <Link to={`/id/${item.id}`}>{item.prof}</Link>
                     <div className='wrapper-salary'>
                         <p className='salary dot'>{(item.paymentFrom && item.paymentTo)
                             ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
