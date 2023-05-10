@@ -12,9 +12,32 @@
     margin-bottom: 16px;
     p {
       margin-top: 12px;
+    }
+    .wrapper-salary {
+      //margin-top: 12px;
+      display: flex;
+      align-items: center;
+    }
+    .salary {
+      font-weight: 600;
+      line-height: 20px;
       span {
-        color: #7B7C88;
+        //display: block;
+        //margin: 0 auto;
+        //font-family: 'Poppins';
+        //font-size: 20px;
+        display: block;
+        margin: 0 auto;
+        width: 5px;
+        height: 5px;
+        background-color: #7B7C88;
+        border-radius: 50%;
       }
+    }
+    .work-type {
+      margin-left: 24px;
+      font-family: 'Inter';
+      font-style: normal;
     }
     img {
       float: left;
@@ -36,5 +59,19 @@
   }
   .mantine-Input-wrapper {
     margin-bottom: 16px;
+  }
+  .dot {
+    position: relative;
+  }
+  .dot::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -15px;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #7B7C88;
   }
 }

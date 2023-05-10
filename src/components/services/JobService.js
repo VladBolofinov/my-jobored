@@ -78,7 +78,7 @@ class JobService {
 
     transformDataVacancies = (res) => {
         return {
-            //id: 5555,
+            id: res.id,
             prof: (res.profession.length > 60) ? res.profession.slice(0, 60) + '...' : res.profession,
             companyName: res.firm_name,
             town: res.town.title,

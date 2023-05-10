@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import { TextInput, TextInputProps, ActionIcon, useMantineTheme, Button } from '@mantine/core';
 import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import JobService from "../services/JobService";
+import {Link} from "react-router-dom";
 
-const Jobs = ({dataFromFilter, vacancyList, onTogleVacancy}) => {
+const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy}) => {
 
     const [itemsCount, setItemsCount] = useState(4);
     const [profNameValue, setProfNameValue] = useState('');
@@ -25,11 +26,14 @@ const Jobs = ({dataFromFilter, vacancyList, onTogleVacancy}) => {
         const items = vacancyList.slice(0, itemsCount).map(item => {
             return (
                 <div className="job-item">
-                    <a href='#'>{item.prof}</a>
-                    <p>{(item.paymentFrom && item.paymentTo)
-                        ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
-                        : `З/п ${item.paymentFrom || item.paymentTo || 'не указана' }`}
-                        <span>.</span> {item.workType}</p> {/*доделай эту точку!!!*/}
+                    <Link to={`/id${item.id}`}>{item.prof}</Link>
+                    <div className='wrapper-salary'>
+                        <p className='salary dot'>{(item.paymentFrom && item.paymentTo)
+                            ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
+                            : `З/п ${item.paymentFrom || item.paymentTo || 'не указана' }`}
+                            </p>
+                        <p className='work-type'>{item.workType}</p>{/*доделай эту точку!!!*/}
+                    </div>
                     <p className='location'><img className='location' src={location} alt="location-icon"/>{item.town}</p>
                 </div>
             )
@@ -47,7 +51,7 @@ const Jobs = ({dataFromFilter, vacancyList, onTogleVacancy}) => {
                 rightSection={
                     <Button
                         onClick={() => jobService.getVacancies(profNameValue,dataFromFilter.salaryFrom,dataFromFilter.salaryTo,dataFromFilter.keyValue)
-                                                 .then(onTogleVacancy)}>
+                                                 .then(onToggleVacancy)}>
                         Поиск
                     </Button>
                 }

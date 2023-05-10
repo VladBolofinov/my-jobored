@@ -1,20 +1,26 @@
+import JobsItem from "../jobs/jobsItem/JobsItem";
+import JobService from "../services/JobService";
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "../header/Header";
 import Jobs from "../jobs/Jobs";
 import Filter from "../filter/Filter";
-import JobService from "../services/JobService";
-import {useEffect, useState} from "react";
 
 const App = () => {
     const jobService = new JobService();
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
-    const [dataFromFilter, setDataFromFilter] = useState({keyValue:'', salaryFrom:'', salaryTo:''});
+    const [dataFromFilter, setDataFromFilter] = useState({
+        keyValue: "",
+        salaryFrom: "",
+        salaryTo: "",
+    });
     const [vacancyList, setVacancyList] = useState([]);
-    const [dataFromJobs, setDataFromJobs] = useState()
+    const [dataFromJobs, setDataFromJobs] = useState();
 
     const onToggleVacancy = (vacancy) => {
         setVacancyList(vacancy);
-    }
+    };
 
     useEffect(() => {
         jobService.getCatalogues().then((catalogues) => {
@@ -31,13 +37,30 @@ const App = () => {
         setDataFromJobs(newData);
     };
 
-  return (
-    <div className="App">
-      <Header/>
-      <Jobs dataFromFilter={dataFromFilter} vacancyList={vacancyList} onTogleVacancy={onToggleVacancy}/>
-      <Filter options={data} keys={keys} onData={handleData}/>
-    </div>
-  );
-}
+    return (
+        <Router>
+            <div className="App">
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <Header />
+                                <Jobs
+                                    dataFromFilter={dataFromFilter}
+                                    vacancyList={vacancyList}
+                                    onToggleVacancy={onToggleVacancy}
+                                />
+                                <Filter options={data} keys={keys} onData={handleData} />
+                            </>
+                        }
+                    />
+                    <Route path="/vacancy-item" element={<JobsItem />} />
+                </Routes>
+            </div>
+        </Router>
+    );
+};
 
 export default App;
+
