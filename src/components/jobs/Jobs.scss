@@ -10,6 +10,25 @@
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 16px;
+    .star {
+      box-sizing: border-box;
+      float: right;
+      margin: 0;
+      width: 24px;
+      height: 24px;
+      background-image: url('../../img/icons/star.svg');
+      background-repeat: no-repeat;
+    }
+
+    .star:hover,
+    .star.active {
+      background-image: url('../../img/icons/hover-star.svg');
+    }
+
+    .star.active:hover,
+    .star.active.active {
+      background-image: url('../../img/icons/active-star.svg');
+    }
     .wrapper-salary {
       display: flex;
       align-items: center;
