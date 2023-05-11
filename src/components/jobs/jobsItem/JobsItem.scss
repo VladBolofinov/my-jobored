@@ -1,12 +1,22 @@
 .wrapper-item {
-  width: 773px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   .job-item {
-    height: 137px;
+    width: 773px;
+    height: 157px;
     background: #FFFFFF;
     border: 1px solid #EAEBED;
     border-radius: 12px;
     padding: 24px;
-    margin-bottom: 16px;
+    margin: 40px 0px 20px 0px;
+    .profession {
+      margin-top: -6px;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 34px;
+      color: #232134;
+    }
     .wrapper-salary {
       display: flex;
       align-items: center;
@@ -17,14 +27,20 @@
     .salary {
       font-weight: 600;
       line-height: 20px;
-      span {
-        display: block;
-        margin: 0 auto;
-        width: 5px;
-        height: 5px;
-        background-color: #7B7C88;
-        border-radius: 50%;
-      }
+    }
+    .dot {
+      position: relative;
+    }
+    .dot::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -15px;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #7B7C88;
     }
     .work-type {
       margin-left: 24px;
@@ -40,6 +56,26 @@
       font-size: 20px;
       color: #5E96FC;
       text-decoration: none;
+    }
+  }
+  .job-item-descr {
+    margin: 0px 0px 51px 0px;
+    padding: 24px;
+    width: 773px;
+    background: #FFFFFF;
+    border: 1px solid #EAEBED;
+    border-radius: 12px;
+    .descr-items {
+      p {
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 16px;
+        font-size: 20px;
+        color: #232134;
+      }
+      li {
+        margin-left: 24px;
+      }
     }
   }
 }

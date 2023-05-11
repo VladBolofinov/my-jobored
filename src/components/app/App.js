@@ -1,4 +1,5 @@
 import JobsItem from "../jobs/jobsItem/JobsItem";
+import './App.scss';
 import JobService from "../services/JobService";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

@@ -32,7 +32,7 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy}) => {
                             ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
                             : `З/п ${item.paymentFrom || item.paymentTo || 'не указана' }`}
                             </p>
-                        <p className='work-type'>{item.workType}</p>{/*доделай эту точку!!!*/}
+                        <p className='work-type'>{item.workType}</p>
                     </div>
                     <p className='location'><img className='location' src={location} alt="location-icon"/>{item.town}</p>
                 </div>
