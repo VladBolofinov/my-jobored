@@ -1,12 +1,12 @@
 import JobsItem from "../jobs/jobsItem/JobsItem";
-import './App.scss';
-import JobService from "../services/JobService";
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "../header/Header";
 import Jobs from "../jobs/Jobs";
 import Filter from "../filter/Filter";
 import FavoriteVacancy from "../activeVacancy/FavoriteVacancy";
+import './App.scss';
+import JobService from "../services/JobService";
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
     const jobService = new JobService();
@@ -22,6 +22,7 @@ const App = () => {
     const onToggleVacancy = (vacancy) => {
         setVacancyList(vacancy);
     };
+//посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
 
     useEffect(() => {
         jobService.getCatalogues().then((catalogues) => {
@@ -51,29 +52,24 @@ const App = () => {
         (!item[item.id])
             ? localStorage.setItem(`${item.id}`, `${JSON.stringify(item)}`)
             : localStorage.removeItem(`${item.id}`);
-        //console.log(JSON.parse(localStorage.getItem(item.id)));
     }
 
     return (
         <Router>
             <div className="App">
                 <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <>
-                                <Header />
-                                <Jobs
-                                    dataFromFilter={dataFromFilter}
-                                    vacancyList={vacancyList}
-                                    onToggleVacancy={onToggleVacancy}
-                                    handleClickStar={handleClickStar}
-                                    onSetLocalStorage={onSetLocalStorage}
-                                />
-                                <Filter options={data} keys={keys} onData={handleData} />
-                            </>
-                        }
-                    />
+                    <Route path='/' element={
+                        <>
+                            <Header />
+                            <Jobs
+                                dataFromFilter={dataFromFilter}
+                                vacancyList={vacancyList}
+                                onToggleVacancy={onToggleVacancy}
+                                handleClickStar={handleClickStar}
+                                onSetLocalStorage={onSetLocalStorage}
+                            />
+                            <Filter options={data} keys={keys} onData={handleData} />
+                        </>}/>
                     <Route path="/id/:id" element={<JobsItem vacancyList={vacancyList}/>} />
                     <Route path="/favorites" element={
                         <>
