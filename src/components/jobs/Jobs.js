@@ -7,7 +7,7 @@ import JobService from "../services/JobService";
 import {Link} from "react-router-dom";
 
 
-const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar}) => {
+const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, onSetLocalStorage}) => {
 
     const [itemsCount, setItemsCount] = useState(4);
     const [profNameValue, setProfNameValue] = useState('');
@@ -22,14 +22,7 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar}) =
         jobService.getToken();
     },[]);
 
-    const onSetLocalStorage = (item) => {
-        if (!item[item.id]) {
-            localStorage.setItem(`${item.id}`, `${JSON.stringify(item)}`);
-        } else {
-            localStorage.removeItem(`${item.id}`);
-        }
-        console.log(JSON.parse(localStorage.getItem(item.id)));
-    }
+
 
     const renderItems = () => {
         const items = vacancyList.slice(0, itemsCount).map(item => {

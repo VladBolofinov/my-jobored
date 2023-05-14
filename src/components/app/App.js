@@ -47,6 +47,13 @@ const App = () => {
         });
     };
 
+    const onSetLocalStorage = (item) => {
+        (!item[item.id])
+            ? localStorage.setItem(`${item.id}`, `${JSON.stringify(item)}`)
+            : localStorage.removeItem(`${item.id}`);
+        //console.log(JSON.parse(localStorage.getItem(item.id)));
+    }
+
     return (
         <Router>
             <div className="App">
@@ -61,6 +68,7 @@ const App = () => {
                                     vacancyList={vacancyList}
                                     onToggleVacancy={onToggleVacancy}
                                     handleClickStar={handleClickStar}
+                                    onSetLocalStorage={onSetLocalStorage}
                                 />
                                 <Filter options={data} keys={keys} onData={handleData} />
                             </>
