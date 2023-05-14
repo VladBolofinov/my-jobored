@@ -7,11 +7,10 @@ import JobService from "../services/JobService";
 import {Link} from "react-router-dom";
 
 
-const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy}) => {
+const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar}) => {
 
     const [itemsCount, setItemsCount] = useState(4);
     const [profNameValue, setProfNameValue] = useState('');
-    const [isClicked, setIsClicked] = useState(false);
 
     const jobService = new JobService();
     const theme = useMantineTheme();
@@ -19,19 +18,9 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy}) => {
         setItemsCount(itemsCount + 4);
     }
 
-    const handleClickStar = (id) => {
-        setIsClicked((prevState) => ({
-            ...prevState,
-            [id]: !prevState[id]
-        }));
-    };
-
-
     useEffect(()=>{
         jobService.getToken();
-        //jobService.getVacancies().then((vacancy) => setDataVacansy(vacancy));
     },[]);
-    const classes = (id) => `star ${isClicked[id] ? "active" : ""}`;
 
     const renderItems = () => {
         const items = vacancyList.slice(0, itemsCount).map(item => {
@@ -39,7 +28,7 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy}) => {
                 <div className="job-item" key={item.id}>
                     <Link to={`/id/${item.id}`}>{item.prof}</Link>
 
-                    <div className={classes(item.id)} onClick={()=>{handleClickStar(item.id)}}></div>
+                    <div className={`star ${item[item.id] ? "active" : ""}`} onClick={()=>{handleClickStar(item.id)}}></div>
 
                     <div className='wrapper-salary'>
                         <p className='salary dot'>{(item.paymentFrom && item.paymentTo)
@@ -71,12 +60,10 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy}) => {
                 }
                 placeholder="Введите название вакансии"
                 rightSectionWidth={100}
-
             />
             {renderItems()}
             {itemsCount < vacancyList.length &&
-                <button onClick={loadMore}>Показать еще</button>
-            }
+                <button onClick={loadMore}>Показать еще</button>}
         </section>
     )
 }

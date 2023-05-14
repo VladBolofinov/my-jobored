@@ -17,7 +17,7 @@ const App = () => {
         salaryTo: "",
     });
     const [vacancyList, setVacancyList] = useState([]);
-    const [dataFromJobs, setDataFromJobs] = useState();
+    //const [dataFromJobs, setDataFromJobs] = useState();
 
     const onToggleVacancy = (vacancy) => {
         setVacancyList(vacancy);
@@ -34,8 +34,20 @@ const App = () => {
     const handleData = (newData) => {
         setDataFromFilter(newData);
     };
-    const handleDataJobs = (newData) => {
+/*    const handleDataJobs = (newData) => {
         setDataFromJobs(newData);
+    };*/
+
+    const handleClickStar = (id) => {
+        setVacancyList(prevState => {
+            const updatedList = prevState.map(item => {
+                if (item.id == id ) {
+                    return {...item, [id]: !item[id]};
+                }
+                return item;
+            });
+            return updatedList;
+        });
     };
 
     return (
@@ -51,6 +63,7 @@ const App = () => {
                                     dataFromFilter={dataFromFilter}
                                     vacancyList={vacancyList}
                                     onToggleVacancy={onToggleVacancy}
+                                    handleClickStar={handleClickStar}
                                 />
                                 <Filter options={data} keys={keys} onData={handleData} />
                             </>
