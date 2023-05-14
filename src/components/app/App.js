@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "../header/Header";
 import Jobs from "../jobs/Jobs";
 import Filter from "../filter/Filter";
+import FavoriteVacancy from "../activeVacancy/FavoriteVacancy";
 
 const App = () => {
     const jobService = new JobService();
@@ -17,7 +18,6 @@ const App = () => {
         salaryTo: "",
     });
     const [vacancyList, setVacancyList] = useState([]);
-    //const [dataFromJobs, setDataFromJobs] = useState();
 
     const onToggleVacancy = (vacancy) => {
         setVacancyList(vacancy);
@@ -34,9 +34,6 @@ const App = () => {
     const handleData = (newData) => {
         setDataFromFilter(newData);
     };
-/*    const handleDataJobs = (newData) => {
-        setDataFromJobs(newData);
-    };*/
 
     const handleClickStar = (id) => {
         setVacancyList(prevState => {
@@ -70,6 +67,13 @@ const App = () => {
                         }
                     />
                     <Route path="/id/:id" element={<JobsItem vacancyList={vacancyList}/>} />
+                    <Route path="/favorites" element={
+                        <>
+                            <Header />
+                            <FavoriteVacancy vacancyList={vacancyList}
+                                             onToggleVacancy={onToggleVacancy}
+                                             handleClickStar={handleClickStar}/>
+                        </> } />
                 </Routes>
             </div>
         </Router>

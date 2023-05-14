@@ -2,6 +2,7 @@ import './Header.scss';
 import '../../style.scss';
 import logo from '../../img/icons/logo.svg'
 import React from "react";
+import {Link} from "react-router-dom";
 const Header = () => {
     return (
         <header className='wrapper'>
@@ -11,9 +12,8 @@ const Header = () => {
             </div>
             <div className="header-links">
                 <a href="#">Поиск вакансий</a>
-                <a href="#">Избранное</a>
+                <Link to='/favorites'>Избранное</Link>
             </div>
-
 
         </header>
     )

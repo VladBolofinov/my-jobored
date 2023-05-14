@@ -22,14 +22,22 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar}) =
         jobService.getToken();
     },[]);
 
+    const onSetLocalStorage = (item) => {
+        if (!item[item.id]) {
+            localStorage.setItem(`${item.id}`, `${JSON.stringify(item)}`);
+        } else {
+            localStorage.removeItem(`${item.id}`);
+        }
+        console.log(JSON.parse(localStorage.getItem(item.id)));
+    }
+
     const renderItems = () => {
         const items = vacancyList.slice(0, itemsCount).map(item => {
             return (
                 <div className="job-item" key={item.id}>
                     <Link to={`/id/${item.id}`}>{item.prof}</Link>
-
-                    <div className={`star ${item[item.id] ? "active" : ""}`} onClick={()=>{handleClickStar(item.id)}}></div>
-
+                    <div className={`star ${item[item.id] ? "active" : ""}`} onClick={()=>{handleClickStar(item.id);
+                                                                                            onSetLocalStorage(item)}}></div>
                     <div className='wrapper-salary'>
                         <p className='salary dot'>{(item.paymentFrom && item.paymentTo)
                             ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
