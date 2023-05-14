@@ -3,89 +3,89 @@
   display: flex;
   flex-direction: column;
   margin: 40px 0 0 505px;
-  .job-item {
-    height: 137px;
-    background: #FFFFFF;
-    border: 1px solid #EAEBED;
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 16px;
-    .star {
-      box-sizing: border-box;
-      float: right;
-      margin: 0;
-      width: 24px;
-      height: 24px;
-      background-image: url('../../img/icons/star.svg');
-      background-repeat: no-repeat;
-    }
+}
+.job-item {
+  height: 137px;
+  background: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  .star {
+    box-sizing: border-box;
+    float: right;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    background-image: url('../../img/icons/star.svg');
+    background-repeat: no-repeat;
+  }
 
-    .star:hover,
-    .star.active {
-      background-image: url('../../img/icons/hover-star.svg');
-    }
+  .star:hover,
+  .star.active {
+    background-image: url('../../img/icons/hover-star.svg');
+  }
 
-    .star.active:hover,
-    .star.active.active {
-      background-image: url('../../img/icons/active-star.svg');
-    }
-    .wrapper-salary {
-      display: flex;
-      align-items: center;
-    }
-    p {
-      margin-top: 6px;//по макету 12px но оно не отображается так как на макете с такими значениями
-    }
-    .salary {
-      font-weight: 600;
-      line-height: 20px;
-      span {
-        display: block;
-        margin: 0 auto;
-        width: 5px;
-        height: 5px;
-        background-color: #7B7C88;
-        border-radius: 50%;
-      }
-    }
-    .work-type {
-      margin-left: 24px;
-      font-family: 'Inter';
-      font-style: normal;
-    }
-    img {
-      float: left;
-      margin-right: 8px;
-    }
-    a {
-      font-weight: 600;
-      font-size: 20px;
-      color: #5E96FC;
-      text-decoration: none;
+  .star.active:hover,
+  .star.active.active {
+    background-image: url('../../img/icons/active-star.svg');
+  }
+  .wrapper-salary {
+    display: flex;
+    align-items: center;
+  }
+  p {
+    margin-top: 6px;//по макету 12px но оно не отображается так как на макете с такими значениями
+  }
+  .salary {
+    font-weight: 600;
+    line-height: 20px;
+    span {
+      display: block;
+      margin: 0 auto;
+      width: 5px;
+      height: 5px;
+      background-color: #7B7C88;
+      border-radius: 50%;
     }
   }
-  .mantine-Button-root {
-    width: 83px;
-    height: 32px;
-    background: #5E96FC;
-    border-radius: 8px;
-    font-weight: 500;
+  .work-type {
+    margin-left: 24px;
+    font-family: 'Inter';
+    font-style: normal;
   }
-  .mantine-Input-wrapper {
-    margin-bottom: 16px;
+  img {
+    float: left;
+    margin-right: 8px;
   }
-  .dot {
-    position: relative;
+  a {
+    font-weight: 600;
+    font-size: 20px;
+    color: #5E96FC;
+    text-decoration: none;
   }
-  .dot::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -15px;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #7B7C88;
-  }
+}
+.mantine-Button-root {
+  width: 83px;
+  height: 32px;
+  background: #5E96FC;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.mantine-Input-wrapper {
+  margin-bottom: 16px;
+}
+.dot {
+  position: relative;
+}
+.dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #7B7C88;
 }

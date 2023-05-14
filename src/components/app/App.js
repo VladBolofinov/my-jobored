@@ -7,7 +7,8 @@ import './App.scss';
 import JobService from "../services/JobService";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+//стили пересмотри, можно половину удалить
+// еще фавиконку
 const App = () => {
     const jobService = new JobService();
     const [data, setData] = useState([]);

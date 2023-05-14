@@ -6,7 +6,10 @@ const JobsItem = ({vacancyList}) => {
 
     const { id } = useParams();
     const num = id;
-    const item = vacancyList.find(item => item.id == num);
+    let item = vacancyList.find(item => item.id == num);
+    if (!item) {
+        item = JSON.parse(localStorage.getItem(num));
+    }
     const htmlText = item.vacancyDescr;
 
     return (

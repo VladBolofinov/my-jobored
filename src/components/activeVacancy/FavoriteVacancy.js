@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import location from "../../img/icons/location.svg";
 import './FavoriteVacancy.scss';
+import Empty from "../empty/Empty";
 //перепиши дублирующий код при рендере айтемов на отдельную функцию
 
 const FavoriteVacancy = ({handleClickStar}) => {
@@ -9,6 +10,7 @@ const FavoriteVacancy = ({handleClickStar}) => {
     for (let key of Object.keys(localStorage)) {
         dataLS.push(JSON.parse(localStorage.getItem(key)));
     }
+    console.log(dataLS);
 
     const onDeleteItemLS = (item) => {
         localStorage.removeItem(`${item.id}`);
@@ -35,8 +37,8 @@ const FavoriteVacancy = ({handleClickStar}) => {
     }
 
     return (
-        <section className='job-wrapper'>
-            {renderItems()}
+        <section className='job-wrapper-favorite'>
+            {(dataLS.length !== 0) ? renderItems() : <Empty/> }
         </section>
     )
 }
