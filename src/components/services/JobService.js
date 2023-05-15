@@ -16,6 +16,8 @@ class JobService {
     }
 
     getToken = async () => {
+
+
         const res = await this.getResource(`${this._apiBase}2.0/oauth2/password/${this._inputData}`,
             {
                 headers: {
@@ -26,8 +28,6 @@ class JobService {
         if (!this._token) {
             throw new Error('Failed to get access token');
         }
-        //console.log(this._token);
-        //console.log(res);
         return res.access_token;
     }
 
@@ -76,7 +76,10 @@ class JobService {
         console.log(res);
         (res.total > 500) ? this._vacanciesTotal = 500 : this._vacanciesTotal = res.total;
         console.log(this._vacanciesTotal);
-        return res.objects.map(this.transformDataVacancies) //;
+        return {
+            vacancies: res.objects.map(this.transformDataVacancies),
+            totalVacancies: this._vacanciesTotal
+        };
     }
     transformDataVacancies = (res) => {
         return {
@@ -92,6 +95,10 @@ class JobService {
             paymentFrom: res.payment_from,
             vacancyDescr: res.vacancyRichText
         };
+    }
+    getVariables = () => {
+        let item = this._vacanciesTotal;
+        return item;
     }
 
 

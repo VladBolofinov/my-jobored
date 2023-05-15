@@ -6,7 +6,7 @@ import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import JobService from "../services/JobService";
 import {Link} from "react-router-dom";
 
-const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, onSetLocalStorage}) => {
+const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, onSetLocalStorage,totalVacancies}) => {
 
     const [itemsCount, setItemsCount] = useState(4);
     const [profNameValue, setProfNameValue] = useState('');
@@ -21,13 +21,13 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
     },[]);
 
     const handlePageChange = (page) => {
-        jobService.getVacancies(profNameValue,dataFromFilter.salaryFrom,dataFromFilter.salaryTo,dataFromFilter.keyValue,page)
+        jobService.getVacancies(profNameValue,dataFromFilter.salaryFrom,dataFromFilter.salaryTo,dataFromFilter.keyValue,page-1)
             .then(onToggleVacancy)
     }
 
 
     const renderItems = () => {
-        const items = vacancyList.map(item => {  //было const items = vacancyList.slice(0, itemsCount).map(item => {
+        const items = vacancyList.map(item => {
             return (
                 <div className="job-item" key={item.id}>
                     <Link to={`/id/${item.id}`}>{item.prof}</Link>
@@ -66,12 +66,9 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
             />
             {renderItems()}
             <Pagination
-                total={125}
+                total={Math.ceil(totalVacancies / 4)}
                 onChange={handlePageChange}
             />
-            {/*{itemsCount < vacancyList.length &&
-                <button onClick={loadMore}>Показать еще</button>}*/}
-
 
         </section>
     )

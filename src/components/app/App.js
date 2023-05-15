@@ -19,9 +19,11 @@ const App = () => {
         salaryTo: "",
     });
     const [vacancyList, setVacancyList] = useState([]);
+    const [totalVacancies, setTotalVacancies] = useState(0);
 
     const onToggleVacancy = (vacancy) => {
-        setVacancyList(vacancy);
+        setVacancyList(vacancy.vacancies);
+        setTotalVacancies(vacancy.totalVacancies);
     };
 //посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
 //сделать кнопку сброс всего
@@ -30,7 +32,9 @@ const App = () => {
             setData(catalogues.name);
             setKeys(catalogues.keys);
         });
-        jobService.getVacancies().then((vacancy) => setVacancyList(vacancy));
+        jobService.getVacancies().then((vacancy) => {
+            setVacancyList(vacancy.vacancies);
+            setTotalVacancies(vacancy.totalVacancies)});
     }, []);
 
     const handleData = (newData) => {
@@ -68,6 +72,7 @@ const App = () => {
                                 onToggleVacancy={onToggleVacancy}
                                 handleClickStar={handleClickStar}
                                 onSetLocalStorage={onSetLocalStorage}
+                                totalVacancies={totalVacancies}
                             />
                             <Filter options={data} keys={keys} onData={handleData} />
                         </>}/>
