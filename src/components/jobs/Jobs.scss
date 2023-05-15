@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: column;
   margin: 40px 0 0 505px;
+  .mantine-Pagination-control {
+    margin: 24px 0 44px 0px;
+    display: flex;
+    justify-content: center ;
+  }
 }
 .job-item {
   height: 137px;
@@ -20,7 +25,6 @@
     background-image: url('../../img/icons/star.svg');
     background-repeat: no-repeat;
   }
-
   .star:hover,
   .star.active {
     background-image: url('../../img/icons/hover-star.svg');
@@ -65,15 +69,16 @@
     text-decoration: none;
   }
 }
-.mantine-Button-root {
-  width: 83px;
-  height: 32px;
-  background: #5E96FC;
-  border-radius: 8px;
-  font-weight: 500;
-}
+
 .mantine-Input-wrapper {
   margin-bottom: 16px;
+  .mantine-Button-root {
+    width: 83px;
+    height: 32px;
+    background: #5E96FC;
+    border-radius: 8px;
+    font-weight: 500;
+  }
 }
 .dot {
   position: relative;

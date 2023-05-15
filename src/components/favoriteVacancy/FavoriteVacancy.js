@@ -58,5 +58,4 @@ const FavoriteVacancy = ({ handleClickStar }) => {
         </section>
     )
 }
-
 export default FavoriteVacancy;

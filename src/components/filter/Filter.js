@@ -4,7 +4,7 @@ import { IconChevronUp, IconSelector, IconChevronDown } from '@tabler/icons-reac
 import { Button } from '@mantine/core';
 import { useState } from "react";
 //чел тебе тут еще нужно поменять стрелочки в айконшеврон
-
+//сделай кнопку сбросить все
 const Filter = ({options, keys, onData}) => {
     const useStyles = createStyles((theme) => ({
 

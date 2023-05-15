@@ -2,7 +2,7 @@ import JobsItem from "../jobs/jobsItem/JobsItem";
 import Header from "../header/Header";
 import Jobs from "../jobs/Jobs";
 import Filter from "../filter/Filter";
-import FavoriteVacancy from "../activeVacancy/FavoriteVacancy";
+import FavoriteVacancy from "../favoriteVacancy/FavoriteVacancy";
 import './App.scss';
 import JobService from "../services/JobService";
 import { useEffect, useState } from "react";

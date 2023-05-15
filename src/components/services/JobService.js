@@ -4,7 +4,6 @@ class JobService {
     _secretKey = 'GEU4nvd3rej*jeh.eqp';
     _secondHeader = 'v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948';
     _token = '';
-    _vacanciesTotal;
 
     getResource = async (url, header) => {
         let res = await fetch(url, header);
@@ -16,8 +15,7 @@ class JobService {
     }
 
     getToken = async () => {
-
-
+        //напиши логику чтобы сохранялось в локалсторэдж и проверялось при загрузке страницы, если устарел то рефреш
         const res = await this.getResource(`${this._apiBase}2.0/oauth2/password/${this._inputData}`,
             {
                 headers: {
@@ -74,11 +72,10 @@ class JobService {
                 }
             });
         console.log(res);
-        (res.total > 500) ? this._vacanciesTotal = 500 : this._vacanciesTotal = res.total;
         console.log(this._vacanciesTotal);
         return {
             vacancies: res.objects.map(this.transformDataVacancies),
-            totalVacancies: this._vacanciesTotal
+            totalVacancies: (res.total > 500) ? 500 : res.total
         };
     }
     transformDataVacancies = (res) => {
@@ -96,11 +93,6 @@ class JobService {
             vacancyDescr: res.vacancyRichText
         };
     }
-    getVariables = () => {
-        let item = this._vacanciesTotal;
-        return item;
-    }
-
 
 //ПЕРЕПИШИ ЭТО ВСЕ НА ХУК А НЕ КЛАСС
 

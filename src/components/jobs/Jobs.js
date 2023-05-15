@@ -8,13 +8,9 @@ import {Link} from "react-router-dom";
 
 const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, onSetLocalStorage,totalVacancies}) => {
 
-    const [itemsCount, setItemsCount] = useState(4);
     const [profNameValue, setProfNameValue] = useState('');
     const jobService = new JobService();
     const theme = useMantineTheme();
-    const loadMore = () => {
-        setItemsCount(itemsCount + 4);
-    }
 
     useEffect(()=>{
         jobService.getToken();
@@ -24,7 +20,6 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
         jobService.getVacancies(profNameValue,dataFromFilter.salaryFrom,dataFromFilter.salaryTo,dataFromFilter.keyValue,page-1)
             .then(onToggleVacancy)
     }
-
 
     const renderItems = () => {
         const items = vacancyList.map(item => {
@@ -69,7 +64,6 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
                 total={Math.ceil(totalVacancies / 4)}
                 onChange={handlePageChange}
             />
-
         </section>
     )
 }
