@@ -1,17 +1,15 @@
 import './Jobs.scss';
 import location from '../../img/icons/location.svg';
 import { useState, useEffect } from 'react';
-import { TextInput, TextInputProps, ActionIcon, useMantineTheme, Button } from '@mantine/core';
+import {TextInput, TextInputProps, ActionIcon, useMantineTheme, Button, Pagination} from '@mantine/core';
 import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import JobService from "../services/JobService";
 import {Link} from "react-router-dom";
-
 
 const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, onSetLocalStorage}) => {
 
     const [itemsCount, setItemsCount] = useState(4);
     const [profNameValue, setProfNameValue] = useState('');
-
     const jobService = new JobService();
     const theme = useMantineTheme();
     const loadMore = () => {
@@ -22,10 +20,14 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
         jobService.getToken();
     },[]);
 
+    const handlePageChange = (page) => {
+        jobService.getVacancies(profNameValue,dataFromFilter.salaryFrom,dataFromFilter.salaryTo,dataFromFilter.keyValue,page)
+            .then(onToggleVacancy)
+    }
 
 
     const renderItems = () => {
-        const items = vacancyList.slice(0, itemsCount).map(item => {
+        const items = vacancyList.map(item => {  //было const items = vacancyList.slice(0, itemsCount).map(item => {
             return (
                 <div className="job-item" key={item.id}>
                     <Link to={`/id/${item.id}`}>{item.prof}</Link>
@@ -63,8 +65,14 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
                 rightSectionWidth={100}
             />
             {renderItems()}
-            {itemsCount < vacancyList.length &&
-                <button onClick={loadMore}>Показать еще</button>}
+            <Pagination
+                total={125}
+                onChange={handlePageChange}
+            />
+            {/*{itemsCount < vacancyList.length &&
+                <button onClick={loadMore}>Показать еще</button>}*/}
+
+
         </section>
     )
 }

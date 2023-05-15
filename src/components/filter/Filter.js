@@ -73,6 +73,6 @@ const Filter = ({options, keys, onData}) => {
         </div>
     );
 }
-
+//сделать при клике на применить чтобы фильтровало результаты
 export default Filter;
 

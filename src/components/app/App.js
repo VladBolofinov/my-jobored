@@ -24,7 +24,7 @@ const App = () => {
         setVacancyList(vacancy);
     };
 //посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
-
+//сделать кнопку сброс всего
     useEffect(() => {
         jobService.getCatalogues().then((catalogues) => {
             setData(catalogues.name);

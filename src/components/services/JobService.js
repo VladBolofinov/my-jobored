@@ -4,6 +4,7 @@ class JobService {
     _secretKey = 'GEU4nvd3rej*jeh.eqp';
     _secondHeader = 'v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948';
     _token = '';
+    _vacanciesTotal;
 
     getResource = async (url, header) => {
         let res = await fetch(url, header);
@@ -56,13 +57,14 @@ class JobService {
     getVacancies = async (keyword='',
                           fromValue = 0,
                           toValue=0,
-                          workId=0) => {
+                          workId=0,
+                          page=0) => {
 
         if (!this._token) {
             await this.getToken();
         }
 
-        const res = await this.getResource(`${this._apiBase}2.0/vacancies/?keyword=${keyword}&payment_from=${fromValue}&payment_to=${toValue}&published=1&catalogues=${workId}&page=1&count=20`,
+        const res = await this.getResource(`${this._apiBase}2.0/vacancies/?keyword=${keyword}&payment_from=${fromValue}&payment_to=${toValue}&published=1&catalogues=${workId}&page=${page}&count=4`,
             {
                 method: 'GET',
                 headers: {
@@ -72,25 +74,9 @@ class JobService {
                 }
             });
         console.log(res);
-        //console.log(this._token);
+        (res.total > 500) ? this._vacanciesTotal = 500 : this._vacanciesTotal = res.total;
+        console.log(this._vacanciesTotal);
         return res.objects.map(this.transformDataVacancies) //;
-    }
-    getOneVacancy = async (id) => {
-
-        if (!this._token) {
-            await this.getToken();
-        }
-
-        const res = await this.getResource(`${this._apiBase}2.0/vacancies/${id}`,
-            {
-                method: 'GET',
-                headers: {
-                    'x-secret-key': `${this._secretKey}`,
-                    'X-Api-App-Id': `${this._secondHeader}`,
-                    Authorization: `Bearer ${this._token}`
-                }
-            });
-        return res.objects.map(this.transformDataVacancies);
     }
     transformDataVacancies = (res) => {
         return {

@@ -14,7 +14,6 @@ const FavoriteVacancy = ({ handleClickStar }) => {
     for (let key of Object.keys(localStorage)) {
         dataLS.push(JSON.parse(localStorage.getItem(key)));
     }
-    console.log(dataLS);
 
     const onDeleteItemLS = (item) => {
         localStorage.removeItem(`${item.id}`);
@@ -55,8 +54,6 @@ const FavoriteVacancy = ({ handleClickStar }) => {
             <Pagination
                 total={Math.ceil(dataLS.length / 4)}
                 onChange={handlePageChange}
-                variant="tabs"
-                maxButtons={5}
             />
         </section>
     )
