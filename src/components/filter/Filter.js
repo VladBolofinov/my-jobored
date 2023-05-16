@@ -5,6 +5,8 @@ import { Button } from '@mantine/core';
 import { useState } from "react";
 //чел тебе тут еще нужно поменять стрелочки в айконшеврон
 //сделай кнопку сбросить все
+//убери полосу прокрутки горизонтальную в выпадающем инпуте
+//как сделать чтобы в фильтре оставались значение после перехода на другую страницу
 const Filter = ({options, keys, onData}) => {
     const useStyles = createStyles((theme) => ({
 
