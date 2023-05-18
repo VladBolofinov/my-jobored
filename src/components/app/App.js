@@ -31,6 +31,18 @@ const App = () => {
         setVacancyList(vacancy.vacancies);
         setTotalVacancies(vacancy.totalVacancies);
     };
+    const mainRequest = (page) => {
+        onLoading();
+        jobService.getVacancies(profNameValue,
+            dataFromFilter.salaryFrom,
+            dataFromFilter.salaryTo,
+            dataFromFilter.keyValue,
+            page-1)
+            .then((vacancy) => {
+            setVacancyList(vacancy.vacancies);
+            setTotalVacancies(vacancy.totalVacancies);
+            setIsLoading(false)});
+    }
 
     useEffect(() => {
         jobService.getToken();
@@ -38,11 +50,7 @@ const App = () => {
             setData(catalogues.name);
             setKeys(catalogues.keys);
         });
-        onLoading();
-        jobService.getVacancies().then((vacancy) => {
-            setVacancyList(vacancy.vacancies);
-            setTotalVacancies(vacancy.totalVacancies);
-            setIsLoading(false)});
+        mainRequest(1);
     }, []);
 
     const onLoading = () => {
@@ -87,6 +95,7 @@ const App = () => {
                                 element={
                                     <>
                                         <Header />
+
                                         {(isLoading) ? <Spinner/> : <><Jobs
                                             dataFromFilter={dataFromFilter}
                                             vacancyList={vacancyList}
@@ -99,7 +108,7 @@ const App = () => {
                                             profNameValue={profNameValue}
                                             onLoading={onLoading}
                                             onOffLoading={onOffLoading}
-                                            //isLoading={isLoading}
+                                            mainRequest={mainRequest}
                                         />
                                             <Filter options={data} keys={keys} onData={handleData} />
                                         </>}

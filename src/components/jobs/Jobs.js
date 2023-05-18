@@ -14,7 +14,8 @@ const Jobs = ({dataFromFilter,
                onSetLocalStorage,
                totalVacancies,
                handleProfNameValue,
-               profNameValue}) => {
+               profNameValue,
+               mainRequest}) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const jobService = new JobService();
@@ -59,8 +60,7 @@ const Jobs = ({dataFromFilter,
                 size="md"
                 rightSection={
                     <Button
-                        onClick={() => jobService.getVacancies(profNameValue,dataFromFilter.salaryFrom,dataFromFilter.salaryTo,dataFromFilter.keyValue)
-                                                 .then(onToggleVacancy)}>
+                        onClick={()=>mainRequest(1)}>
                         Поиск
                     </Button>
                 }
