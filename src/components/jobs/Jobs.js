@@ -1,34 +1,14 @@
 import './Jobs.scss';
 import location from '../../img/icons/location.svg';
-import { useState, useEffect } from 'react';
-import {TextInput, TextInputProps, ActionIcon, Button, Pagination} from '@mantine/core';
+import {TextInput, TextInputProps, ActionIcon, Button} from '@mantine/core';
 import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
-import JobService from "../services/JobService";
 import {Link} from "react-router-dom";
-import Spinner from "../spinner/Spinner";
 //сделать чтобы пагинация обновлялась с первого числа каждый запрос
-const Jobs = ({dataFromFilter,
-               vacancyList,
-               onToggleVacancy,
+const Jobs = ({vacancyList,
                handleClickStar,
                onSetLocalStorage,
-               totalVacancies,
                handleProfNameValue,
-               profNameValue,
                mainRequest}) => {
-
-    const [isLoading, setIsLoading] = useState(false);
-    const jobService = new JobService();
-
-    const onLoading = () => {
-        setIsLoading(true);
-    }
-    const handlePageChange = (page) => {
-        onLoading();
-        jobService.getVacancies(profNameValue,dataFromFilter.salaryFrom,dataFromFilter.salaryTo,dataFromFilter.keyValue,page-1)
-            .then((res) => {onToggleVacancy(res);
-            setIsLoading(false);});
-    }
 
     const renderItems = () => {
         const items = vacancyList.map(item => {
@@ -67,14 +47,7 @@ const Jobs = ({dataFromFilter,
                 placeholder="Введите название вакансии"
                 rightSectionWidth={100}
             />
-            {(isLoading)
-                ? <Spinner/>
-                : <>{renderItems()}
-                </>}
-            <Pagination
-                total={Math.ceil(totalVacancies / 4)}
-                onChange={handlePageChange}
-            />
+            {renderItems()}
         </section>
     )
 }

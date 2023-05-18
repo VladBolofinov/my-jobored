@@ -9,28 +9,28 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Empty from "../empty/Empty";
 import Spinner from "../spinner/Spinner";
-//стили пересмотри, можно половину удалить
-//еще фавиконку
+import {Pagination} from "@mantine/core";
+//стили пересмотри, можно половину удалить еще фавиконку
 //сделай шаг в тысячу при клике на от и до
 //посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
 //сделать кнопку сброс всего
+//добавь empty компонент чтобы отображался если ничего не найдено
+//САМЫЙ ГЛАВНЫЙ БАГ, ПРИ КЛИКЕ НА КНОПКУ ПРИМЕНИТЬ ПРАВИЛЬНЫЕ РЕЗУЛЬТАТЫ ТОЛЬКО НА ВТОРОЙ РАЗ ПРИСЫЛАЕТ
+//ВОЗМОЖНО ПРОБЛЕМА С ОБНОВЛЕНИЕМ СТЕЙТА???
+//и при вызова нового запроса поставить действие чтобы пагинация становилась с первого числа
 const App = () => {
-    const jobService = new JobService();
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
+    const [vacancyList, setVacancyList] = useState([]);
+    const [totalVacancies, setTotalVacancies] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
+    const [profNameValue, setProfNameValue] = useState('');
     const [dataFromFilter, setDataFromFilter] = useState({
         keyValue: "",
         salaryFrom: "",
         salaryTo: "",
     });
-    const [vacancyList, setVacancyList] = useState([]);
-    const [totalVacancies, setTotalVacancies] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
-    const [profNameValue, setProfNameValue] = useState('');
-    const onToggleVacancy = (vacancy) => {
-        setVacancyList(vacancy.vacancies);
-        setTotalVacancies(vacancy.totalVacancies);
-    };
+    const jobService = new JobService();
     const mainRequest = (page) => {
         onLoading();
         jobService.getVacancies(profNameValue,
@@ -41,7 +41,8 @@ const App = () => {
             .then((vacancy) => {
             setVacancyList(vacancy.vacancies);
             setTotalVacancies(vacancy.totalVacancies);
-            setIsLoading(false)});
+            setIsLoading(false)
+            });
     }
 
     useEffect(() => {
@@ -95,23 +96,20 @@ const App = () => {
                                 element={
                                     <>
                                         <Header />
-
+                                        <Filter options={data} keys={keys} onData={handleData}
+                                        mainRequest={mainRequest}/>
                                         {(isLoading) ? <Spinner/> : <><Jobs
-                                            dataFromFilter={dataFromFilter}
                                             vacancyList={vacancyList}
-                                            onToggleVacancy={onToggleVacancy}
                                             handleClickStar={handleClickStar}
                                             onSetLocalStorage={onSetLocalStorage}
-                                            totalVacancies={totalVacancies}
-                                            isLoading={isLoading}
                                             handleProfNameValue={handleProfNameValue}
-                                            profNameValue={profNameValue}
-                                            onLoading={onLoading}
-                                            onOffLoading={onOffLoading}
                                             mainRequest={mainRequest}
                                         />
-                                            <Filter options={data} keys={keys} onData={handleData} />
                                         </>}
+                                        <Pagination
+                                            total={Math.ceil(totalVacancies / 4)}
+                                            onChange={mainRequest}
+                                        />
                                     </>
                                 }
                             />
@@ -119,14 +117,10 @@ const App = () => {
                                 path="/id/:id"
                                 element={<JobsItem vacancyList={vacancyList} />}
                             />
-                            <Route
-                                path="/favorites"
-                                element={
+                            <Route path="/favorites" element={
                                     <>
                                         <Header />
                                         <FavoriteVacancy
-                                            vacancyList={vacancyList}
-                                            onToggleVacancy={onToggleVacancy}
                                             handleClickStar={handleClickStar}
                                         />
                                     </>

@@ -8,12 +8,8 @@ import { useState } from "react";
 //убери полосу прокрутки горизонтальную в выпадающем инпуте
 //как сделать чтобы в фильтре оставались значение после перехода на другую страницу
 //сделать при клике на применить чтобы фильтровало результаты
-const Filter = ({options, keys, onData}) => {
-    const useStyles = createStyles((theme) => ({
+const Filter = ({options, keys, onData, mainRequest}) => {
 
-    }));
-    // You can add these classes as classNames to any Mantine input, it will work the same
-    const { classes } = useStyles();
     const toggleChevron = () => {
         //напиши тут чтобы менялась стрелочка при переключении
     }
@@ -25,8 +21,8 @@ const Filter = ({options, keys, onData}) => {
 
     const handleSendData = () => {
             onData({keyValue:keyValue,
-                      salaryFrom:salaryFrom,
-                      salaryTo:salaryTo});
+                    salaryFrom:salaryFrom,
+                    salaryTo:salaryTo});
     };
 
     return (
@@ -42,7 +38,6 @@ const Filter = ({options, keys, onData}) => {
                 withinPortal
                 data={options}
                 placeholder="Выберите отрасль"
-                classNames={classes}
                 maxDropdownHeight={150}
                 rightSection={<IconChevronDown size="1rem" />}
                 styles={(theme) => ({
@@ -70,7 +65,10 @@ const Filter = ({options, keys, onData}) => {
             />
 
             <Button
-                onClick={handleSendData}
+                onClick={async () => {
+                    await handleSendData();
+                    mainRequest(1);
+                }}
                 color="#5E96FC">
                 Применить
             </Button>

@@ -1,4 +1,9 @@
 .App {
   min-height: 100vh;
   background-color: #F7F7F8;
+  .mantine-Group-root {
+    margin: 24px 180px 0px 505px;
+    padding-bottom: 44px;
+    justify-content: center;
+  }
 }
