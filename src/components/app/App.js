@@ -7,6 +7,8 @@ import './App.scss';
 import JobService from "../services/JobService";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Empty from "../empty/Empty";
+import Spinner from "../spinner/Spinner";
 //стили пересмотри, можно половину удалить
 // еще фавиконку
 //сделай шаг в тысячу при клике на от и до
@@ -23,7 +25,7 @@ const App = () => {
     });
     const [vacancyList, setVacancyList] = useState([]);
     const [totalVacancies, setTotalVacancies] = useState(0);
-
+    const [isLoading, setIsLoading] = useState(false);
     const onToggleVacancy = (vacancy) => {
         setVacancyList(vacancy.vacancies);
         setTotalVacancies(vacancy.totalVacancies);
@@ -34,11 +36,16 @@ const App = () => {
             setData(catalogues.name);
             setKeys(catalogues.keys);
         });
+        onLoading();
         jobService.getVacancies().then((vacancy) => {
             setVacancyList(vacancy.vacancies);
-            setTotalVacancies(vacancy.totalVacancies)});
+            setTotalVacancies(vacancy.totalVacancies);
+            setIsLoading(false)});
     }, []);
 
+    const onLoading = () => {
+        setIsLoading(true);
+    }
     const handleData = (newData) => {
         setDataFromFilter(newData);
     };
@@ -65,27 +72,47 @@ const App = () => {
         <Router>
             <div className="App">
                 <Routes>
-                    <Route path='/' element={
                         <>
-                            <Header />
-                            <Jobs
-                                dataFromFilter={dataFromFilter}
-                                vacancyList={vacancyList}
-                                onToggleVacancy={onToggleVacancy}
-                                handleClickStar={handleClickStar}
-                                onSetLocalStorage={onSetLocalStorage}
-                                totalVacancies={totalVacancies}
+                            <Route
+                                path="/"
+                                element={
+
+                                    <>
+                                        <Header />
+                                        {(isLoading) ? <Spinner/> : <><Jobs
+                                            dataFromFilter={dataFromFilter}
+                                            vacancyList={vacancyList}
+                                            onToggleVacancy={onToggleVacancy}
+                                            handleClickStar={handleClickStar}
+                                            onSetLocalStorage={onSetLocalStorage}
+                                            totalVacancies={totalVacancies}
+                                            isLoading={isLoading}
+                                        />
+                                            <Filter options={data} keys={keys} onData={handleData} />
+                                        </>}
+
+
+                                    </>
+                                }
                             />
-                            <Filter options={data} keys={keys} onData={handleData} />
-                        </>}/>
-                    <Route path="/id/:id" element={<JobsItem vacancyList={vacancyList}/>} />
-                    <Route path="/favorites" element={
-                        <>
-                            <Header />
-                            <FavoriteVacancy vacancyList={vacancyList}
-                                             onToggleVacancy={onToggleVacancy}
-                                             handleClickStar={handleClickStar}/>
-                        </> } />
+                            <Route
+                                path="/id/:id"
+                                element={<JobsItem vacancyList={vacancyList} />}
+                            />
+                            <Route
+                                path="/favorites"
+                                element={
+                                    <>
+                                        <Header />
+                                        <FavoriteVacancy
+                                            vacancyList={vacancyList}
+                                            onToggleVacancy={onToggleVacancy}
+                                            handleClickStar={handleClickStar}
+                                        />
+                                    </>
+                                }
+                            />
+                        </>
                 </Routes>
             </div>
         </Router>

@@ -5,10 +5,12 @@ import {TextInput, TextInputProps, ActionIcon, useMantineTheme, Button, Paginati
 import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import JobService from "../services/JobService";
 import {Link} from "react-router-dom";
-
+import Spinner from "../spinner/Spinner";
+//сделать чтобы пагинация обновлялась с первого числа каждый запрос
 const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, onSetLocalStorage,totalVacancies}) => {
 
     const [profNameValue, setProfNameValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const jobService = new JobService();
     const theme = useMantineTheme();
 
@@ -16,9 +18,14 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
         jobService.getToken();
     },[]);
 
+    const onLoading = () => {
+        setIsLoading(true);
+    }
     const handlePageChange = (page) => {
+        onLoading();
         jobService.getVacancies(profNameValue,dataFromFilter.salaryFrom,dataFromFilter.salaryTo,dataFromFilter.keyValue,page-1)
-            .then(onToggleVacancy)
+            .then((res) => {onToggleVacancy(res);
+            setIsLoading(false);});
     }
 
     const renderItems = () => {
@@ -59,10 +66,14 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
                 placeholder="Введите название вакансии"
                 rightSectionWidth={100}
             />
-            {renderItems()}
+            {(isLoading)
+                ? <Spinner/>
+                : <>{renderItems()}
+                </>}
             <Pagination
                 total={Math.ceil(totalVacancies / 4)}
                 onChange={handlePageChange}
+                //value={}
             />
         </section>
     )
