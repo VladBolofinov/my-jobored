@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Empty from "../empty/Empty";
 import Spinner from "../spinner/Spinner";
 //стили пересмотри, можно половину удалить
-// еще фавиконку
+//еще фавиконку
 //сделай шаг в тысячу при клике на от и до
 //посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
 //сделать кнопку сброс всего
@@ -26,12 +26,14 @@ const App = () => {
     const [vacancyList, setVacancyList] = useState([]);
     const [totalVacancies, setTotalVacancies] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
+    const [profNameValue, setProfNameValue] = useState('');
     const onToggleVacancy = (vacancy) => {
         setVacancyList(vacancy.vacancies);
         setTotalVacancies(vacancy.totalVacancies);
     };
 
     useEffect(() => {
+        jobService.getToken();
         jobService.getCatalogues().then((catalogues) => {
             setData(catalogues.name);
             setKeys(catalogues.keys);
@@ -46,9 +48,16 @@ const App = () => {
     const onLoading = () => {
         setIsLoading(true);
     }
+    const onOffLoading = () => {
+        setIsLoading(false);
+    }
     const handleData = (newData) => {
         setDataFromFilter(newData);
     };
+
+    const handleProfNameValue = (e) => {
+        setProfNameValue(e);
+    }
 
     const handleClickStar = (id) => {
         setVacancyList(prevState => {
@@ -76,7 +85,6 @@ const App = () => {
                             <Route
                                 path="/"
                                 element={
-
                                     <>
                                         <Header />
                                         {(isLoading) ? <Spinner/> : <><Jobs
@@ -87,11 +95,14 @@ const App = () => {
                                             onSetLocalStorage={onSetLocalStorage}
                                             totalVacancies={totalVacancies}
                                             isLoading={isLoading}
+                                            handleProfNameValue={handleProfNameValue}
+                                            profNameValue={profNameValue}
+                                            onLoading={onLoading}
+                                            onOffLoading={onOffLoading}
+                                            //isLoading={isLoading}
                                         />
                                             <Filter options={data} keys={keys} onData={handleData} />
                                         </>}
-
-
                                     </>
                                 }
                             />

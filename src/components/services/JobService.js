@@ -27,6 +27,7 @@ class JobService {
         if (!this._token) {
             throw new Error('Failed to get access token');
         }
+        //console.log(res.access_token);
         return res.access_token;
     }
 

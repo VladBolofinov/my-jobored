@@ -1,22 +1,23 @@
 import './Jobs.scss';
 import location from '../../img/icons/location.svg';
 import { useState, useEffect } from 'react';
-import {TextInput, TextInputProps, ActionIcon, useMantineTheme, Button, Pagination} from '@mantine/core';
+import {TextInput, TextInputProps, ActionIcon, Button, Pagination} from '@mantine/core';
 import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import JobService from "../services/JobService";
 import {Link} from "react-router-dom";
 import Spinner from "../spinner/Spinner";
 //сделать чтобы пагинация обновлялась с первого числа каждый запрос
-const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, onSetLocalStorage,totalVacancies}) => {
+const Jobs = ({dataFromFilter,
+               vacancyList,
+               onToggleVacancy,
+               handleClickStar,
+               onSetLocalStorage,
+               totalVacancies,
+               handleProfNameValue,
+               profNameValue}) => {
 
-    const [profNameValue, setProfNameValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const jobService = new JobService();
-    const theme = useMantineTheme();
-
-    useEffect(()=>{
-        jobService.getToken();
-    },[]);
 
     const onLoading = () => {
         setIsLoading(true);
@@ -52,7 +53,7 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
     return (
         <section className='job-wrapper'>
             <TextInput
-                onChange={(event) => setProfNameValue(event.currentTarget.value)}
+                onChange={(event) =>handleProfNameValue(event.currentTarget.value)}
                 icon={<IconSearch size="1.1rem" stroke={1.5} />}
                 radius="8px"
                 size="md"
@@ -73,7 +74,6 @@ const Jobs = ({dataFromFilter, vacancyList, onToggleVacancy, handleClickStar, on
             <Pagination
                 total={Math.ceil(totalVacancies / 4)}
                 onChange={handlePageChange}
-                //value={}
             />
         </section>
     )
