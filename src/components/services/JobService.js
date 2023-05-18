@@ -20,6 +20,7 @@ class JobService {
             {
                 headers: {
                     'x-secret-key': `${this._secretKey}`,
+                    'X-Api-App-Id': `${this._secondHeader}`
                 }
             });
         this._token = res.access_token;
@@ -34,6 +35,7 @@ class JobService {
             {
                 headers: {
                     'x-secret-key': `${this._secretKey}`,
+                    'X-Api-App-Id': `${this._secondHeader}`
                 }
             });
         return this.transformDataCatalogues(res);

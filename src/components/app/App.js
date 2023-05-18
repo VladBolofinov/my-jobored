@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //стили пересмотри, можно половину удалить
 // еще фавиконку
+//сделай шаг в тысячу при клике на от и до
+//посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
+//сделать кнопку сброс всего
 const App = () => {
     const jobService = new JobService();
     const [data, setData] = useState([]);
@@ -25,8 +28,7 @@ const App = () => {
         setVacancyList(vacancy.vacancies);
         setTotalVacancies(vacancy.totalVacancies);
     };
-//посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
-//сделать кнопку сброс всего
+
     useEffect(() => {
         jobService.getCatalogues().then((catalogues) => {
             setData(catalogues.name);
