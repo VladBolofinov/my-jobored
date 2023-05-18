@@ -68,6 +68,7 @@ const Filter = ({options, keys, onData}) => {
                 placeholder="До"
                 rightSection={<IconSelector size="1rem" />}
             />
+
             <Button
                 onClick={handleSendData}
                 color="#5E96FC">
