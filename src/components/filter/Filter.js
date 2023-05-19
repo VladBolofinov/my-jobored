@@ -63,7 +63,6 @@ const Filter = ({options, keys, onData, mainRequest}) => {
                 placeholder="До"
                 rightSection={<IconSelector size="1rem" />}
             />
-
             <Button
                 onClick={async () => {
                     await handleSendData();
