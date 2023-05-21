@@ -25,18 +25,18 @@ const App = () => {
     const [totalVacancies, setTotalVacancies] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [profNameValue, setProfNameValue] = useState('');
-    const [dataFromFilter, setDataFromFilter] = useState({
-        keyValue: "",
-        salaryFrom: "",
-        salaryTo: "",
-    });
+    const [salaryFrom, setSalaryFrom] = useState('');
+    const [salaryTo, setSalaryTo] = useState('');
+    const [inputValue, setInputValue] = useState('');
+    const [keyValue, setKeyValue] = useState('');
+
     const jobService = new JobService();
     const mainRequest = (page) => {
         onLoading();
         jobService.getVacancies(profNameValue,
-            dataFromFilter.salaryFrom,
-            dataFromFilter.salaryTo,
-            dataFromFilter.keyValue,
+            salaryFrom,
+            salaryTo,
+            keyValue,
             page-1)
             .then((vacancy) => {
             setVacancyList(vacancy.vacancies);
@@ -57,15 +57,29 @@ const App = () => {
     const onLoading = () => {
         setIsLoading(true);
     }
-    const onOffLoading = () => {
-        setIsLoading(false);
+
+    const onEmpty = () => {
+        setInputValue('');
+        setSalaryFrom('');
+        setSalaryTo('');
+        setProfNameValue('');
     }
-    const handleData = (newData) => {
-        setDataFromFilter(newData);
-    };
 
     const handleProfNameValue = (e) => {
         setProfNameValue(e);
+    }
+
+    const handleSalaryFrom = (e) => {
+        setSalaryFrom(e);
+    }
+
+    const handleSalaryTo = (e) => {
+        setSalaryTo(e);
+    }
+
+    const handleValue = (e) => {
+        setInputValue(e);
+        setKeyValue(keys[data.indexOf(e)]);
     }
 
     const handleClickStar = (id) => {
@@ -96,14 +110,22 @@ const App = () => {
                                 element={
                                     <>
                                         <Header />
-                                        <Filter options={data} keys={keys} onData={handleData}
-                                        mainRequest={mainRequest}/>
+                                        <Filter options={data} keys={keys}
+                                        mainRequest={mainRequest}
+                                                handleValue={handleValue}
+                                                handleSalaryFrom={handleSalaryFrom}
+                                                handleSalaryTo={handleSalaryTo}
+                                                onEmpty={onEmpty}
+                                                inputValue={inputValue}
+                                                salaryFrom={salaryFrom}
+                                                salaryTo={salaryTo}/>
                                         {(isLoading) ? <Spinner/> : <><Jobs
                                             vacancyList={vacancyList}
                                             handleClickStar={handleClickStar}
                                             onSetLocalStorage={onSetLocalStorage}
                                             handleProfNameValue={handleProfNameValue}
                                             mainRequest={mainRequest}
+                                            profNameValue={profNameValue}
                                         />
                                         </>}
                                         <Pagination

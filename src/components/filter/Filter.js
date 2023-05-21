@@ -9,27 +9,10 @@ import emptyIcon from '../../img/icons/cancel.svg';
 //убери полосу прокрутки горизонтальную в выпадающем инпуте
 //как сделать чтобы в фильтре оставались значение после перехода на другую страницу
 //сделать при клике на применить чтобы фильтровало результаты
-const Filter = ({options, keys, onData, mainRequest}) => {
+const Filter = ({options, mainRequest, handleSalaryFrom, handleSalaryTo, handleValue, onEmpty, inputValue, salaryFrom, salaryTo}) => {
 
     const toggleChevron = () => {
         //напиши тут чтобы менялась стрелочка при переключении
-    }
-
-    const [inputValue, setInputValue] = useState('');
-    const [keyValue, setKeyValue] = useState('');
-    const [salaryFrom, setSalaryFrom] = useState('');
-    const [salaryTo, setSalaryTo] = useState('');
-
-    const handleSendData = () => {
-            onData({keyValue:keyValue,
-                    salaryFrom:salaryFrom,
-                    salaryTo:salaryTo});
-    };
-
-    const onEmpty = () => {
-        setInputValue('');
-        setSalaryFrom('');
-        setSalaryTo('');
     }
 
     return (
@@ -44,10 +27,7 @@ const Filter = ({options, keys, onData, mainRequest}) => {
             <p className='filter-subheader'>Отрасль</p>
             <Select
                 value={inputValue}
-                onChange={(value) => {
-                    setInputValue(value);
-                    setKeyValue(keys[options.indexOf(value)]);
-                }}
+                onChange={handleValue}
                 mt="md"
                 withinPortal
                 data={options}
@@ -68,22 +48,19 @@ const Filter = ({options, keys, onData, mainRequest}) => {
             />
             <p className='filter-subheader second'>Оклад</p>
             <TextInput
+                onChange={(event) => handleSalaryFrom(event.currentTarget.value)}
                 value={salaryFrom}
-                onChange={(event) => setSalaryFrom(event.currentTarget.value)}
                 placeholder="От"
                 rightSection={<IconSelector size="1rem" />}
             />
             <TextInput
                 value={salaryTo}
-                onChange={(event) => setSalaryTo(event.currentTarget.value)}
+                onChange={(event) => handleSalaryTo(event.currentTarget.value)}
                 placeholder="До"
                 rightSection={<IconSelector size="1rem" />}
             />
             <Button
-                onClick={async () => {
-                    await handleSendData();
-                    mainRequest(1);
-                }}
+                onClick={() => mainRequest(1)}
                 color="#5E96FC">
                 Применить
             </Button>

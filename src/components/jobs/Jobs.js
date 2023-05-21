@@ -8,7 +8,8 @@ const Jobs = ({vacancyList,
                handleClickStar,
                onSetLocalStorage,
                handleProfNameValue,
-               mainRequest}) => {
+               mainRequest,
+               profNameValue}) => {
 
     const renderItems = () => {
         const items = vacancyList.map(item => {
@@ -34,6 +35,7 @@ const Jobs = ({vacancyList,
     return (
         <section className='job-wrapper'>
             <TextInput
+                value={profNameValue}
                 onChange={(event) =>handleProfNameValue(event.currentTarget.value)}
                 icon={<IconSearch size="1.1rem" stroke={1.5} />}
                 radius="8px"
