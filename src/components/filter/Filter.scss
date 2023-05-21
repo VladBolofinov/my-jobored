@@ -1,0 +1,64 @@
+.filter-wrapper {
+  padding: 20px;
+  width: 315px;
+  height: 360px;
+  background: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+  font-weight: 700;
+  position: absolute;
+  left: 162px;
+  top: 124px;
+  }
+  .filter-header {
+    font-size: 20px;
+    line-height: 20px;
+  }
+  .filter-subheader {
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 32px;
+    &.second {
+      margin-top: 20px;
+    }
+  }
+  .filter-input-catalogues {
+    width: 275px;
+    height: 42px;
+    background: #FFFFFF;
+    border: 1px solid #D5D6DC;
+    border-radius: 8px;
+    margin-top: 8px;
+  }
+  .mantine-TextInput-wrapper {
+    margin-top: 8px;
+  }
+  .mantine-Button-root {
+    width: 275px;
+    height: 40px;
+    border-radius: 8px;
+    background: #5E96FC;
+    font-weight: 500;
+  }
+
+.wrapper-empty-cancel {
+  position: relative;
+  top: -20px;
+  left: 160px;
+  .empty-text {
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #ACADB9;
+    float: left;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    &:hover {
+      color: #92C1FF;
+    }
+  }
+}
+
+
+
