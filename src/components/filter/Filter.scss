@@ -39,11 +39,17 @@
     border-radius: 8px;
     background: #5E96FC;
     font-weight: 500;
+    &:hover {
+      background: #92C1FF;
+    }
+    &:active {
+      background: #3B7CD3;
+    }
   }
 
 .wrapper-empty-cancel {
   position: relative;
-  top: -20px;
+  top: -40px;
   left: 160px;
   .empty-text {
     border: none;
@@ -52,13 +58,52 @@
     line-height: 20px;
     color: #ACADB9;
     float: left;
-    background-color: #FFFFFF;
     cursor: pointer;
+  }
+  .cross {
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 10px;
     &:hover {
       color: #92C1FF;
     }
+    &:active {
+      color: #5E96FC;
+    }
   }
 }
+.cross::before, .cross::after {
+  margin-left: 55px;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 1.5px;
+  background: #ACADB9;
+}
+
+.cross::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.cross::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.cross:hover::before,
+.cross:hover::after {
+  background: #92C1FF;
+}
+
+.cross:active::before,
+.cross:active::after {
+  background: #5E96FC;
+}
+
 
 
 

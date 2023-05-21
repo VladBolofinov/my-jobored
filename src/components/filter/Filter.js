@@ -22,10 +22,7 @@ const Filter = ({options,
         <div className='filter-wrapper'>
             <p className='filter-header'>Фильтры</p>
             <div className="wrapper-empty-cancel">
-                <button onClick={onEmpty} className='empty-text'>Сбросить все
-                    <img src={emptyIcon} alt="emptyIcon" className="empty-img"/>
-                </button>
-
+                <button onClick={onEmpty} className='empty-text cross'>Сбросить все</button>
             </div>
             <p className='filter-subheader'>Отрасль</p>
             <Select
