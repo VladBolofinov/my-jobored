@@ -4,6 +4,7 @@ import {TextInput, TextInputProps, ActionIcon, Button} from '@mantine/core';
 import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import {Link} from "react-router-dom";
 //сделать чтобы пагинация обновлялась с первого числа каждый запрос
+//
 const Jobs = ({vacancyList,
                handleClickStar,
                onSetLocalStorage,
