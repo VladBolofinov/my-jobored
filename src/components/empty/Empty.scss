@@ -1,0 +1,32 @@
+.wrapper-empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 80px;
+  p {
+    margin-top: 32px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #343A40;
+  }
+  button {
+    margin-top: 32px;
+    width: 164px;
+    height: 42px;
+    background: #DEECFF;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #3B7CD3;
+    transition: background 0.3s, color 0.3s;
+    &:hover {
+      background: #C9E0FF;
+    }
+    &:active {
+      background: #B7D6FF;
+    }
+  }
+}

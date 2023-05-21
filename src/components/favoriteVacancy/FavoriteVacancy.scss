@@ -1,0 +1,15 @@
+.job-wrapper-favorite {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0 0 0;
+  align-items: center;
+  .job-item {
+    width: 773px;
+  }
+  .mantine-Pagination-control {
+    margin: 88px 0 44px 0;
+  }
+  .mantine-Pagination-dots {
+    margin-top: 45px;
+  }
+}
