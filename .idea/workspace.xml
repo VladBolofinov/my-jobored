@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="23f639fe-d9e9-41e7-8c02-444c00f4ea63" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/filter/Filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter/Filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filter/Filter.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter/Filter.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/icons/cancel.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +30,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/100nout/Desktop/my-jobored",
+    "last_opened_file_path": "C:/Users/100nout/Desktop/jobored-app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -63,7 +62,7 @@
       <workItem from="1682585134954" duration="133051000" />
       <workItem from="1684161247583" duration="59759000" />
       <workItem from="1684684727003" duration="4155000" />
-      <workItem from="1684691884970" duration="2548000" />
+      <workItem from="1684691884970" duration="3112000" />
     </task>
     <servers />
   </component>

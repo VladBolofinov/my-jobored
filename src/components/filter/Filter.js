@@ -2,7 +2,6 @@ import './Filter.scss';
 import { Select, TextInput, Button, ScrollArea} from '@mantine/core';
 import { IconChevronUp, IconSelector, IconChevronDown } from '@tabler/icons-react';
 import {useState} from "react";
-//сделай шаг в 1000 на стрелочках
 const Filter = ({options,
                 mainRequest,
                 handleSalaryFrom,
