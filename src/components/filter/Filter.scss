@@ -54,9 +54,9 @@
     float: left;
     background-color: #FFFFFF;
     cursor: pointer;
-  }
-  .empty-img {
-
+    &:hover {
+      color: #92C1FF;
+    }
   }
 }
 

@@ -1,19 +1,22 @@
 import './Filter.scss';
-import { createStyles, rem, Select, TextInput } from '@mantine/core';
+import { Select, TextInput, Button } from '@mantine/core';
 import { IconChevronUp, IconSelector, IconChevronDown } from '@tabler/icons-react';
-import { Button } from '@mantine/core';
-import { useState } from "react";
 import emptyIcon from '../../img/icons/cancel.svg';
-//чел тебе тут еще нужно поменять стрелочки в айконшеврон
-//сделай кнопку сбросить все
+import {useState} from "react";
 //убери полосу прокрутки горизонтальную в выпадающем инпуте
-//как сделать чтобы в фильтре оставались значение после перехода на другую страницу
-//сделать при клике на применить чтобы фильтровало результаты
-const Filter = ({options, mainRequest, handleSalaryFrom, handleSalaryTo, handleValue, onEmpty, inputValue, salaryFrom, salaryTo}) => {
+//стили для кнопки сброса
+//стили для кнопок
+const Filter = ({options,
+                mainRequest,
+                handleSalaryFrom,
+                handleSalaryTo,
+                handleValue,
+                onEmpty,
+                inputValue,
+                salaryFrom,
+                salaryTo}) => {
 
-    const toggleChevron = () => {
-        //напиши тут чтобы менялась стрелочка при переключении
-    }
+    const [onChevron, setOnChevron] = useState(false);
 
     return (
         <div className='filter-wrapper'>
@@ -33,7 +36,11 @@ const Filter = ({options, mainRequest, handleSalaryFrom, handleSalaryTo, handleV
                 data={options}
                 placeholder="Выберите отрасль"
                 maxDropdownHeight={150}
-                rightSection={<IconChevronDown size="1rem" />}
+                onDropdownClose={()=>setOnChevron(false)}
+                onDropdownOpen={()=>setOnChevron(true)}
+                rightSection={onChevron
+                    ? <IconChevronUp stroke-width="1.5" width="24px" height="24px" color={'#5E96FC'} />
+                    : <IconChevronDown stroke-width="1.5" width="24px" height="24px" color={'#ACADB9'} />}
                 styles={(theme) => ({
                     item: {
                         '&[data-selected]': {
