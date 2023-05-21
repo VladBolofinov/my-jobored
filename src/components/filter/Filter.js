@@ -3,6 +3,7 @@ import { createStyles, rem, Select, TextInput } from '@mantine/core';
 import { IconChevronUp, IconSelector, IconChevronDown } from '@tabler/icons-react';
 import { Button } from '@mantine/core';
 import { useState } from "react";
+import emptyIcon from '../../img/icons/cancel.svg';
 //чел тебе тут еще нужно поменять стрелочки в айконшеврон
 //сделай кнопку сбросить все
 //убери полосу прокрутки горизонтальную в выпадающем инпуте
@@ -16,8 +17,8 @@ const Filter = ({options, keys, onData, mainRequest}) => {
 
     const [inputValue, setInputValue] = useState('');
     const [keyValue, setKeyValue] = useState('');
-    const [salaryFrom, setSalaryFrom] = useState(0);
-    const [salaryTo, setSalaryTo] = useState(0);
+    const [salaryFrom, setSalaryFrom] = useState('');
+    const [salaryTo, setSalaryTo] = useState('');
 
     const handleSendData = () => {
             onData({keyValue:keyValue,
@@ -25,11 +26,24 @@ const Filter = ({options, keys, onData, mainRequest}) => {
                     salaryTo:salaryTo});
     };
 
+    const onEmpty = () => {
+        setInputValue('');
+        setSalaryFrom('');
+        setSalaryTo('');
+    }
+
     return (
         <div className='filter-wrapper'>
             <p className='filter-header'>Фильтры</p>
+            <div className="wrapper-empty-cancel">
+                <button onClick={onEmpty} className='empty-text'>Сбросить все
+                    <img src={emptyIcon} alt="emptyIcon" className="empty-img"/>
+                </button>
+
+            </div>
             <p className='filter-subheader'>Отрасль</p>
             <Select
+                value={inputValue}
                 onChange={(value) => {
                     setInputValue(value);
                     setKeyValue(keys[options.indexOf(value)]);
@@ -54,11 +68,13 @@ const Filter = ({options, keys, onData, mainRequest}) => {
             />
             <p className='filter-subheader second'>Оклад</p>
             <TextInput
+                value={salaryFrom}
                 onChange={(event) => setSalaryFrom(event.currentTarget.value)}
                 placeholder="От"
                 rightSection={<IconSelector size="1rem" />}
             />
             <TextInput
+                value={salaryTo}
                 onChange={(event) => setSalaryTo(event.currentTarget.value)}
                 placeholder="До"
                 rightSection={<IconSelector size="1rem" />}
