@@ -34,7 +34,7 @@
     margin-top: 8px;
   }
   .mantine-Button-root {
-    width: 275px;
+    width: 273px;
     height: 40px;
     border-radius: 8px;
     background: #5E96FC;
@@ -103,7 +103,7 @@
 .cross:active::after {
   background: #5E96FC;
 }
-
-
-
+.mantine-Select-itemsWrapper {
+  white-space: initial;
+}
 

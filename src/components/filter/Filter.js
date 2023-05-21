@@ -1,11 +1,8 @@
 import './Filter.scss';
-import { Select, TextInput, Button } from '@mantine/core';
+import { Select, TextInput, Button, ScrollArea} from '@mantine/core';
 import { IconChevronUp, IconSelector, IconChevronDown } from '@tabler/icons-react';
-import emptyIcon from '../../img/icons/cancel.svg';
 import {useState} from "react";
-//убери полосу прокрутки горизонтальную в выпадающем инпуте
-//стили для кнопки сброса
-//стили для кнопок
+//сделай шаг в 1000 на стрелочках
 const Filter = ({options,
                 mainRequest,
                 handleSalaryFrom,
@@ -32,7 +29,7 @@ const Filter = ({options,
                 withinPortal
                 data={options}
                 placeholder="Выберите отрасль"
-                maxDropdownHeight={150}
+                maxDropdownHeight={'188px'}
                 onDropdownClose={()=>setOnChevron(false)}
                 onDropdownOpen={()=>setOnChevron(true)}
                 rightSection={onChevron
@@ -45,6 +42,7 @@ const Filter = ({options,
                                 backgroundColor: '#5E96FC',
                             },
                         },
+                        'whiteSpace': 'initial',
                         '&[data-hovered]': {
                             backgroundColor: '#DEECFF'},
                     },
@@ -55,13 +53,13 @@ const Filter = ({options,
                 onChange={(event) => handleSalaryFrom(event.currentTarget.value)}
                 value={salaryFrom}
                 placeholder="От"
-                rightSection={<IconSelector size="1rem" />}
+                rightSection={<IconSelector color={'#ACADB9'} size="1.5rem" stroke-width="1.5" />}
             />
             <TextInput
                 value={salaryTo}
                 onChange={(event) => handleSalaryTo(event.currentTarget.value)}
                 placeholder="До"
-                rightSection={<IconSelector size="1rem" />}
+                rightSection={<IconSelector color={'#ACADB9'} size="1.5rem" stroke-width="1.5" />}
             />
             <Button
                 onClick={() => mainRequest(1)}
