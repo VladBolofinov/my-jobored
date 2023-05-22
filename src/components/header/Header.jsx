@@ -12,7 +12,6 @@ export const Header = () => {
                 <img src={logo} alt="logo-icon"/>
                 <p className='logo-name'>Jobored</p>
             </div>
-            {/*решить проблему с ссылками, при переходе на ссылку отдельной вакансии нужно чтобы оставались активные стили*/}
             <div className="header-links">
                 <NavLink style={({isActive}) => ({color: isActive ? '#5E96FC' : '#232134'})} to='/'>Поиск вакансий</NavLink>
                 <NavLink style={({isActive}) => ({color: isActive ? '#5E96FC' : '#232134'})} to='/favorites'>Избранное</NavLink>

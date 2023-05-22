@@ -6,15 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="23f639fe-d9e9-41e7-8c02-444c00f4ea63" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/empty/Empty.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/empty/Empty.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/favoriteVacancy/FavoriteVacancy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/favoriteVacancy/FavoriteVacancy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filter/Filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter/Filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/jobs/Jobs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/jobs/Jobs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/jobs/jobsItem/JobsItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/jobs/jobsItem/JobsItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/spinner/Spinner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/spinner/Spinner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/empty/Empty.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/empty/Empty.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/favoriteVacancy/FavoriteVacancy.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/favoriteVacancy/FavoriteVacancy.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/favoriteVacancy/FavoriteVacancy.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/favoriteVacancy/FavoriteVacancy.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filter/Filter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter/Filter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/jobs/Jobs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/jobs/Jobs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/jobs/Jobs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/jobs/Jobs.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/jobs/jobsItem/JobsItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/jobs/jobsItem/JobsItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/JobService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/JobService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,11 +53,11 @@
       <recent name="C:\Users\100nout\Desktop\jobored-app\src\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\100nout\Desktop\my-jobored\src" />
       <recent name="C:\Users\100nout\Desktop\jobored-app\src\img\icons" />
       <recent name="C:\Users\100nout\Desktop\jobored-app\src\components\jobs" />
       <recent name="C:\Users\100nout\Desktop\jobored-app\src\img" />
       <recent name="C:\Users\100nout\Desktop\jobored-app\src\components\app" />
-      <recent name="C:\Users\100nout\Desktop\jobored-app\src\components" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -71,7 +73,7 @@
       <workItem from="1684684727003" duration="4155000" />
       <workItem from="1684691884970" duration="3112000" />
       <workItem from="1684695458501" duration="672000" />
-      <workItem from="1684743889310" duration="5529000" />
+      <workItem from="1684743889310" duration="16601000" />
     </task>
     <servers />
   </component>

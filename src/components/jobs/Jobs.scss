@@ -5,13 +5,15 @@
   margin: 40px 0 0 505px;
 }
 .job-item {
-  height: 137px;
+  min-height: 137px;
   background: #FFFFFF;
   border: 1px solid #EAEBED;
   border-radius: 12px;
   padding: 24px;
   margin-bottom: 16px;
   .star {
+    border: none;
+    background-color: transparent;
     box-sizing: border-box;
     float: right;
     margin: 0;

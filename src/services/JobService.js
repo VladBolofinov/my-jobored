@@ -15,6 +15,7 @@ class JobService {
     }
 
     getToken = async () => {
+
         //напиши логику чтобы сохранялось в локалсторэдж и проверялось при загрузке страницы, если устарел то рефреш
         const res = await this.getResource(`${this._apiBase}2.0/oauth2/password/${this._inputData}`,
             {
@@ -27,7 +28,7 @@ class JobService {
         if (!this._token) {
             throw new Error('Failed to get access token');
         }
-        //console.log(res.access_token);
+        console.log(res);
         return res.access_token;
     }
 
@@ -85,10 +86,10 @@ class JobService {
         return {
             [res.id]: false,
             id: res.id,
-            prof: (res.profession.length > 60) ? res.profession.slice(0, 60) + '...' : res.profession,//подумай тут еще как лучше
+            prof: /*(res.profession.length > 60) ? res.profession.slice(0, 60) + '...' : */res.profession,//подумай тут еще как лучше
             companyName: res.firm_name,
             town: res.town.title,
-            professionType: res.catalogues[0].title,//бывает не отображает эту графу
+            professionType: res.catalogues[0].title,
             workType: res.type_of_work.title,
             curr: res.currency,
             paymentTo: res.payment_to,
@@ -96,9 +97,7 @@ class JobService {
             vacancyDescr: res.vacancyRichText
         };
     }
-
 //ПЕРЕПИШИ ЭТО ВСЕ НА ХУК А НЕ КЛАСС
-
 }
 
 export default JobService;

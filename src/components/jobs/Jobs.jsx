@@ -16,10 +16,12 @@ export const Jobs = ({vacancyList,
     const renderItems = (list) => (
         list.map(item => {
             return (
-                <div className="job-item" key={item.id}>
+                <div className="job-item" key={item.id} data-elem={`vacancy-${item.id}`}>
                     <Link to={`/id/${item.id}`}>{item.prof}</Link>
-                    <div className={`star ${item[item.id] ? "active" : ""}`} onClick={()=>{handleClickStar(item.id);
-                                                                                            onSetLocalStorage(item)}}></div>
+                    <button className={`star ${item[item.id] ? "active" : ""}`}
+                            onClick={()=>{handleClickStar(item.id);
+                            onSetLocalStorage(item)}}
+                            data-elem={`vacancy-${item.id}-shortlist-button`}></button>
                     <div className='wrapper-salary'>
                         <p className='salary dot'>{(item.paymentFrom && item.paymentTo)
                             ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
@@ -35,6 +37,7 @@ export const Jobs = ({vacancyList,
     return (
         <section className='job-wrapper'>
             <TextInput
+                data-elem={"search-input"}
                 value={profNameValue}
                 onChange={(event) =>handleProfNameValue(event.currentTarget.value)}
                 icon={<IconSearch size="1.1rem" stroke={1.5} />}
@@ -42,6 +45,7 @@ export const Jobs = ({vacancyList,
                 size="md"
                 rightSection={
                     <Button
+                        data-elem={"search-button"}
                         onClick={()=>mainRequest(1)}>
                         Поиск
                     </Button>

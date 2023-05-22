@@ -9,7 +9,7 @@ export const Filter = ({options,
                 handleSalaryFrom,
                 handleSalaryTo,
                 handleValue,
-                onEmpty,
+                onDeleteFilter,
                 inputValue,
                 salaryFrom,
                 salaryTo}) => {
@@ -20,10 +20,11 @@ export const Filter = ({options,
         <div className='filter-wrapper'>
             <p className='filter-header'>Фильтры</p>
             <div className="wrapper-empty-cancel">
-                <button onClick={onEmpty} className='empty-text cross'>Сбросить все</button>
+                <button onClick={onDeleteFilter} className='empty-text cross'>Сбросить все</button>
             </div>
             <p className='filter-subheader'>Отрасль</p>
             <Select
+                data-elem={"industry-select"}
                 value={inputValue}
                 onChange={handleValue}
                 mt="md"
@@ -51,18 +52,21 @@ export const Filter = ({options,
             />
             <p className='filter-subheader second'>Оклад</p>
             <TextInput
+                data-elem={"salary-from-input"}
                 onChange={(event) => handleSalaryFrom(event.currentTarget.value)}
                 value={salaryFrom}
                 placeholder="От"
                 rightSection={<IconSelector color={'#ACADB9'} size="1.5rem" stroke-width="1.5" />}
             />
             <TextInput
+                data-elem={"salary-to-input"}
                 value={salaryTo}
                 onChange={(event) => handleSalaryTo(event.currentTarget.value)}
                 placeholder="До"
                 rightSection={<IconSelector color={'#ACADB9'} size="1.5rem" stroke-width="1.5" />}
             />
             <Button
+                data-elem={"search-button"}
                 onClick={() => mainRequest(1)}
                 color="#5E96FC">
                 Применить

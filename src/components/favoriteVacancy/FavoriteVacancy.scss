@@ -6,10 +6,13 @@
   .job-item {
     width: 773px;
   }
-  .mantine-Pagination-control {
-    margin: 88px 0 44px 0;
+  .wrapper-favorite-pagination {
+    .mantine-Group-root {
+      margin: 88px 0 0 0;
+    }
   }
   .mantine-Pagination-dots {
     margin-top: 45px;
   }
 }
+

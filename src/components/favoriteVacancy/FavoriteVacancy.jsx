@@ -6,7 +6,7 @@ import location from "../../img/icons/location.svg";
 import {Empty} from "../empty/Empty";
 import './FavoriteVacancy.scss';
 
-export const FavoriteVacancy = ({ handleClickStar }) => {
+export const FavoriteVacancy = ({handleClickStar, onEmptyPage, onDeleteFilter}) => {
     const [startNumber, setStartNumber] = useState(0);
     const [endNumber, setEndNumber] = useState(4);
     const [dataLS, setDataLS] = useState([]);
@@ -31,12 +31,13 @@ export const FavoriteVacancy = ({ handleClickStar }) => {
     const renderItems = () => {
         return dataLS.slice(startNumber, endNumber).map(item => {
             return (
-                <div className="job-item" key={item.id}>
+                <div className="job-item" key={item.id} data-elem={`vacancy-${item.id}`}>
                     <Link to={`/id/${item.id}`}>{item.prof}</Link>
-                    <div className={`star ${!item[item.id] ? "active" : ""}`} onClick={() => {
-                        handleClickStar(item.id);
-                        onDeleteItemLS(item)
-                    }}></div>
+                    <button className={`star ${!item[item.id] ? "active" : ""}`}
+                            onClick={() => {handleClickStar(item.id);
+                            onDeleteItemLS(item)}}
+                            data-elem={`vacancy-${item.id}-shortlist-button`}>
+                    </button>
                     <div className='wrapper-salary'>
                         <p className='salary dot'>{(item.paymentFrom && item.paymentTo)
                             ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
@@ -58,11 +59,14 @@ export const FavoriteVacancy = ({ handleClickStar }) => {
 
     return (
         <section className='job-wrapper-favorite'>
-            {(dataLS.length !== 0) ? renderItems() : <Empty />}
-            <Pagination
-                total={Math.ceil(dataLS.length / 4)}
-                onChange={handlePageChange}
-            />
+            {(dataLS.length !== 0) ? renderItems() : <Empty onEmptyPage={onEmptyPage}
+                                                            onDeleteFilter={onDeleteFilter} />}
+            <div className="wrapper-favorite-pagination">
+                <Pagination
+                    total={Math.ceil(dataLS.length / 4)}
+                    onChange={handlePageChange}
+                />
+            </div>
         </section>
     )
 }
