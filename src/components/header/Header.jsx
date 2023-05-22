@@ -13,8 +13,10 @@ export const Header = () => {
                 <p className='logo-name'>Jobored</p>
             </div>
             <div className="header-links">
-                <NavLink style={({isActive}) => ({color: isActive ? '#5E96FC' : '#232134'})} to='/'>Поиск вакансий</NavLink>
-                <NavLink style={({isActive}) => ({color: isActive ? '#5E96FC' : '#232134'})} to='/favorites'>Избранное</NavLink>
+                <NavLink style={({isActive}) => ({color: isActive ? '#5E96FC' : '#232134'})}
+                         to='/'>Поиск вакансий</NavLink>
+                <NavLink style={({isActive}) => ({color: isActive ? '#5E96FC' : '#232134'})}
+                         to='/favorites'>Избранное</NavLink>
             </div>
         </header>
     )

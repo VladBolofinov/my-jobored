@@ -26,7 +26,6 @@
   .star.active {
     background-image: url('../../img/icons/hover-star.svg');
   }
-
   .star.active:hover,
   .star.active.active {
     background-image: url('../../img/icons/active-star.svg');
@@ -36,7 +35,7 @@
     align-items: center;
   }
   p {
-    margin-top: 6px;//по макету 12px но оно не отображается так как на макете с такими значениями
+    margin-top: 6px;
   }
   .salary {
     font-weight: 600;
@@ -66,7 +65,6 @@
     text-decoration: none;
   }
 }
-
 .mantine-Input-wrapper {
   margin-bottom: 16px;
   .mantine-Button-root {

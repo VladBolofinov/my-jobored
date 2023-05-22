@@ -5,7 +5,6 @@ import {TextInput, Button} from '@mantine/core';
 import location from '../../img/icons/location.svg';
 import './Jobs.scss';
 
-//сделать чтобы пагинация обновлялась с первого числа каждый запрос
 export const Jobs = ({vacancyList,
                handleClickStar,
                onSetLocalStorage,

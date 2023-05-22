@@ -12,11 +12,6 @@ import {Spinner} from "../spinner/Spinner";
 import JobService from "../../services/JobService";
 import './App.scss';
 
-//стили пересмотри, можно половину удалить еще фавиконку
-//сделай шаг в тысячу при клике на от и до в компоненте filter
-//посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
-//и при вызова нового запроса поставить действие чтобы пагинация становилась с первого числа
-//пагинация постраничкам в фэйворитс баг когда удаляешь на последней странице
 export const App = () => {
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
@@ -29,7 +24,6 @@ export const App = () => {
     const [inputValue, setInputValue] = useState('');
     const [keyValue, setKeyValue] = useState('');
     const [emptyPage, setEmptyPage] = useState(false);
-
 
     const jobService = new JobService();
     const mainRequest = (page) => {

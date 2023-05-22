@@ -2,7 +2,6 @@ import {Circles} from "react-loader-spinner";
 
 import './Spinner.scss';
 
-
 export const Spinner = () => {
     return (
             <div className='wrapper-spinner'>
