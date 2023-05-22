@@ -16,7 +16,7 @@
     background-color: transparent;
     box-sizing: border-box;
     float: right;
-    margin: 0;
+    margin: -26px 0 0 0;
     width: 24px;
     height: 24px;
     background-image: url('../../img/icons/star.svg');
@@ -58,7 +58,7 @@
     float: left;
     margin-right: 8px;
   }
-  a {
+  .job-header {
     font-weight: 600;
     font-size: 20px;
     color: #5E96FC;

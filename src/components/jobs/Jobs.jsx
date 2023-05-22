@@ -15,21 +15,25 @@ export const Jobs = ({vacancyList,
     const renderItems = (list) => (
         list.map(item => {
             return (
-                <div className="job-item" key={item.id} data-elem={`vacancy-${item.id}`}>
-                    <Link to={`/id/${item.id}`}>{item.prof}</Link>
-                    <button className={`star ${item[item.id] ? "active" : ""}`}
-                            onClick={()=>{handleClickStar(item.id);
-                            onSetLocalStorage(item)}}
-                            data-elem={`vacancy-${item.id}-shortlist-button`}></button>
-                    <div className='wrapper-salary'>
-                        <p className='salary dot'>{(item.paymentFrom && item.paymentTo)
-                            ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
-                            : `З/п ${item.paymentFrom || item.paymentTo || 'не указана' }`}
+                <Link to={`/id/${item.id}`} style={{ textDecoration: 'none', color: '#232134' }}>
+                    <div className="job-item" key={item.id} data-elem={`vacancy-${item.id}`}>
+                        <p className='job-header'>{item.prof}</p>
+                        <button className={`star ${item[item.id] ? "active" : ""}`}
+                                onClick={(event)=>{
+                                    event.preventDefault();
+                                    handleClickStar(item.id);
+                                    onSetLocalStorage(item)}}
+                                data-elem={`vacancy-${item.id}-shortlist-button`}></button>
+                        <div className='wrapper-salary'>
+                            <p className='salary dot'>{(item.paymentFrom && item.paymentTo)
+                                ? `З/п ${item.paymentFrom} - ${item.paymentTo}`
+                                : `З/п ${item.paymentFrom || item.paymentTo || 'не указана' }`}
                             </p>
-                        <p className='work-type'>{item.workType}</p>
+                            <p className='work-type'>{item.workType}</p>
+                        </div>
+                        <p className='location'><img className='location' src={location} alt="location-icon"/>{item.town}</p>
                     </div>
-                    <p className='location'><img className='location' src={location} alt="location-icon"/>{item.town}</p>
-                </div>
+                </Link>
             )
         }))
 

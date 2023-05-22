@@ -16,7 +16,7 @@ export const JobsItem = ({vacancyList, handleClickStar, onSetLocalStorage}) => {
             <Header/>
             <div className='wrapper-item'>
                 <div className="job-item" data-elem={`vacancy-${item.id}`}>
-                    <button className={`star ${item[item.id] ? "active" : ""}`}
+                    <button className={`star ${item[item.id] ? "active" : ""} solo`}
                             onClick={()=>{handleClickStar(item.id);
                             onSetLocalStorage(item)}}
                             data-elem={`vacancy-${item.id}-shortlist-button`} ></button>

@@ -31,10 +31,13 @@ export const FavoriteVacancy = ({handleClickStar, onEmptyPage, onDeleteFilter}) 
     const renderItems = () => {
         return dataLS.slice(startNumber, endNumber).map(item => {
             return (
+                <Link to={`/id/${item.id}`} style={{ textDecoration: 'none', color: '#232134' }}>
                 <div className="job-item" key={item.id} data-elem={`vacancy-${item.id}`}>
-                    <Link to={`/id/${item.id}`}>{item.prof}</Link>
+                    <p className='job-header'>{item.prof}</p>
                     <button className={`star ${!item[item.id] ? "active" : ""}`}
-                            onClick={() => {handleClickStar(item.id);
+                            onClick={(event) => {
+                            event.preventDefault();
+                            handleClickStar(item.id);
                             onDeleteItemLS(item)}}
                             data-elem={`vacancy-${item.id}-shortlist-button`}>
                     </button>
@@ -47,6 +50,7 @@ export const FavoriteVacancy = ({handleClickStar, onEmptyPage, onDeleteFilter}) 
                     </div>
                     <p className='location'><img className='location' src={location} alt="location-icon" />{item.town}</p>
                 </div>
+                </Link>
             )
         })
     }
