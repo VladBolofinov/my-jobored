@@ -8,7 +8,7 @@ import { useState } from "react";
 const FavoriteVacancy = ({ handleClickStar }) => {
     const [startNumber, setStartNumber] = useState(0);
     const [endNumber, setEndNumber] = useState(4);
-
+    //const [dataLS, setDataLS] = useState([]);
     let dataLS = [];
 
     for (let key of Object.keys(localStorage)) {
@@ -20,7 +20,7 @@ const FavoriteVacancy = ({ handleClickStar }) => {
     }
 
     const renderItems = () => {
-        const items = dataLS.slice(startNumber, endNumber).map(item => {
+        return dataLS.slice(startNumber, endNumber).map(item => {
             return (
                 <div className="job-item" key={item.id}>
                     <Link to={`/id/${item.id}`}>{item.prof}</Link>
@@ -39,7 +39,6 @@ const FavoriteVacancy = ({ handleClickStar }) => {
                 </div>
             )
         })
-        return items;
     }
 
     const handlePageChange = (page) => {

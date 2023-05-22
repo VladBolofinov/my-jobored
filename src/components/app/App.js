@@ -15,6 +15,8 @@ import {Pagination} from "@mantine/core";
 //посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
 //добавь empty компонент чтобы отображался если ничего не найдено
 //и при вызова нового запроса поставить действие чтобы пагинация становилась с первого числа
+//стили в фэйворитс для пагинации поменяйн
+//пагинация постраничкам в фэйворитс баг когда удаляешь на последней странице
 const App = () => {
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
@@ -29,7 +31,7 @@ const App = () => {
 
     const jobService = new JobService();
     const mainRequest = (page) => {
-        onLoading();
+        setIsLoading(true);
         jobService.getVacancies(profNameValue,
             salaryFrom,
             salaryTo,
@@ -50,10 +52,6 @@ const App = () => {
         });
         mainRequest(1);
     }, []);
-
-    const onLoading = () => {
-        setIsLoading(true);
-    }
 
     const onEmpty = () => {
         setInputValue('');
@@ -92,9 +90,9 @@ const App = () => {
     };
 
     const onSetLocalStorage = (item) => {
-        (!item[item.id])
-            ? localStorage.setItem(`${item.id}`, `${JSON.stringify(item)}`)
-            : localStorage.removeItem(`${item.id}`);
+        (item[item.id])
+            ? localStorage.removeItem(`${item.id}`)
+            : localStorage.setItem(`${item.id}`, `${JSON.stringify(item)}`);
     }
 
     return (
