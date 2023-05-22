@@ -1,22 +1,31 @@
-import { Link } from "react-router-dom";
-import location from "../../img/icons/location.svg";
-import './FavoriteVacancy.scss';
-import Empty from "../empty/Empty";
-import { Pagination } from '@mantine/core';
-import { useState } from "react";
+import {useState, useEffect} from "react";
+import {Link} from "react-router-dom";
+import {Pagination} from '@mantine/core';
 
-const FavoriteVacancy = ({ handleClickStar }) => {
+import location from "../../img/icons/location.svg";
+import {Empty} from "../empty/Empty";
+import './FavoriteVacancy.scss';
+
+export const FavoriteVacancy = ({ handleClickStar }) => {
     const [startNumber, setStartNumber] = useState(0);
     const [endNumber, setEndNumber] = useState(4);
-    //const [dataLS, setDataLS] = useState([]);
-    let dataLS = [];
+    const [dataLS, setDataLS] = useState([]);
 
-    for (let key of Object.keys(localStorage)) {
-        dataLS.push(JSON.parse(localStorage.getItem(key)));
-    }
+    useEffect(() => {
+        getDataLS();
+    }, []);
+
+    const getDataLS = () => {
+        const newDataLS = [];
+        for (let key of Object.keys(localStorage)) {
+            newDataLS.push(JSON.parse(localStorage.getItem(key)));
+        }
+        setDataLS(newDataLS);
+    };
 
     const onDeleteItemLS = (item) => {
         localStorage.removeItem(`${item.id}`);
+        setDataLS(prevDataLS => prevDataLS.filter(dataItem => dataItem.id !== item.id));
     }
 
     const renderItems = () => {
@@ -57,4 +66,4 @@ const FavoriteVacancy = ({ handleClickStar }) => {
         </section>
     )
 }
-export default FavoriteVacancy;
+

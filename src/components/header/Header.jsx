@@ -1,9 +1,11 @@
-import './Header.scss';
-import '../../style.scss';
-import logo from '../../img/icons/logo.svg'
 import React from "react";
 import {NavLink} from "react-router-dom";
-const Header = () => {
+
+import logo from '../../img/icons/logo.svg';
+import './Header.scss';
+import '../../style.scss';
+
+export const Header = () => {
     return (
         <header className='wrapper'>
             <div className="header-logo">
@@ -18,7 +20,5 @@ const Header = () => {
         </header>
     )
 }
-
-export default Header;
 
 

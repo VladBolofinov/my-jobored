@@ -1,14 +1,13 @@
 import location from "../../../img/icons/location.svg";
 import './JobsItem.scss';
 import { useParams } from 'react-router-dom';
-import Header from "../../header/Header";
-const JobsItem = ({vacancyList}) => {
+import {Header} from "../../header/Header";
+export const JobsItem = ({vacancyList}) => {
 
     const { id } = useParams();
-    const num = id;
-    let item = vacancyList.find(item => item.id == num);
+    let item = vacancyList.find(item => item.id == id);
     if (!item) {
-        item = JSON.parse(localStorage.getItem(num));
+        item = JSON.parse(localStorage.getItem(id));
     }
     const htmlText = item.vacancyDescr;
 
@@ -34,5 +33,3 @@ const JobsItem = ({vacancyList}) => {
         </>
     )
 }
-
-export default JobsItem;

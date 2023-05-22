@@ -1,15 +1,17 @@
-import JobsItem from "../jobs/jobsItem/JobsItem";
-import Header from "../header/Header";
-import Jobs from "../jobs/Jobs";
-import Filter from "../filter/Filter";
-import FavoriteVacancy from "../favoriteVacancy/FavoriteVacancy";
-import './App.scss';
-import JobService from "../services/JobService";
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Empty from "../empty/Empty";
-import Spinner from "../spinner/Spinner";
+import {useEffect, useState} from "react";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {Pagination} from "@mantine/core";
+
+import {JobsItem} from "../jobs/jobsItem/JobsItem";
+import {Header} from "../header/Header";
+import {Jobs} from "../jobs/Jobs";
+import {Filter} from "../filter/Filter";
+import {FavoriteVacancy} from "../favoriteVacancy/FavoriteVacancy";
+import {Empty} from "../empty/Empty";
+import {Spinner} from "../spinner/Spinner";
+import JobService from "../../services/JobService";
+import './App.scss';
+
 //стили пересмотри, можно половину удалить еще фавиконку
 //сделай шаг в тысячу при клике на от и до в компоненте filter
 //посмотреть мини баг при котором в поиске вакансий слетает звездочка (это происходит при перезаписи новых вакансий с сервера)
@@ -17,7 +19,7 @@ import {Pagination} from "@mantine/core";
 //и при вызова нового запроса поставить действие чтобы пагинация становилась с первого числа
 //стили в фэйворитс для пагинации поменяйн
 //пагинация постраничкам в фэйворитс баг когда удаляешь на последней странице
-const App = () => {
+export const App = () => {
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
     const [vacancyList, setVacancyList] = useState([]);
@@ -149,6 +151,4 @@ const App = () => {
         </Router>
     );
 };
-
-export default App;
 

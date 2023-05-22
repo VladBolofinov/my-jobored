@@ -1,9 +1,11 @@
+import React from "react";
+import {NavLink} from "react-router-dom";
+
 import searchingMan from '../../img/searching-man.svg';
 import './Empty.scss';
-import {NavLink} from "react-router-dom";
-import React from "react";
+
 //добавь логику при клике на кнопку и переходе на экран поик вакансий отправляся запрос на сервер и обнулялись стейты
-const Empty = () => {
+export const Empty = () => {
     return (
         <div className='wrapper-empty'>
             <img src={searchingMan} alt="not-found"/>
@@ -12,4 +14,3 @@ const Empty = () => {
         </div>
     )
 }
-export default Empty;

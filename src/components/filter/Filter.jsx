@@ -1,8 +1,10 @@
-import './Filter.scss';
-import { Select, TextInput, Button, ScrollArea} from '@mantine/core';
-import { IconChevronUp, IconSelector, IconChevronDown } from '@tabler/icons-react';
 import {useState} from "react";
-const Filter = ({options,
+import {IconChevronUp, IconSelector, IconChevronDown} from '@tabler/icons-react';
+import {Select, TextInput, Button} from '@mantine/core';
+
+import './Filter.scss';
+
+export const Filter = ({options,
                 mainRequest,
                 handleSalaryFrom,
                 handleSalaryTo,
@@ -68,6 +70,4 @@ const Filter = ({options,
         </div>
     );
 }
-
-export default Filter;
 

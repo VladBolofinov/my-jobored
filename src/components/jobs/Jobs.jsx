@@ -1,18 +1,20 @@
-import './Jobs.scss';
-import location from '../../img/icons/location.svg';
-import {TextInput, TextInputProps, ActionIcon, Button} from '@mantine/core';
-import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import {Link} from "react-router-dom";
+import {IconSearch} from '@tabler/icons-react';
+import {TextInput, Button} from '@mantine/core';
+
+import location from '../../img/icons/location.svg';
+import './Jobs.scss';
+
 //сделать чтобы пагинация обновлялась с первого числа каждый запрос
-const Jobs = ({vacancyList,
+export const Jobs = ({vacancyList,
                handleClickStar,
                onSetLocalStorage,
                handleProfNameValue,
                mainRequest,
                profNameValue}) => {
 
-    const renderItems = () => {
-        const items = vacancyList.map(item => {
+    const renderItems = (list) => (
+        list.map(item => {
             return (
                 <div className="job-item" key={item.id}>
                     <Link to={`/id/${item.id}`}>{item.prof}</Link>
@@ -28,9 +30,7 @@ const Jobs = ({vacancyList,
                     <p className='location'><img className='location' src={location} alt="location-icon"/>{item.town}</p>
                 </div>
             )
-        })
-        return items;
-    }
+        }))
 
     return (
         <section className='job-wrapper'>
@@ -49,9 +49,7 @@ const Jobs = ({vacancyList,
                 placeholder="Введите название вакансии"
                 rightSectionWidth={100}
             />
-            {renderItems()}
+            {renderItems(vacancyList)}
         </section>
     )
 }
-
-export default Jobs;
