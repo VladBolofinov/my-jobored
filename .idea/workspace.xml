@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="23f639fe-d9e9-41e7-8c02-444c00f4ea63" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/favoriteVacancy/FavoriteVacancy.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/favoriteVacancy/FavoriteVacancy.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/jobs/Jobs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/jobs/Jobs.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/jobs/Jobs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/jobs/Jobs.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/jobs/jobsItem/JobsItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/jobs/jobsItem/JobsItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/jobs/jobsItem/JobsItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/jobs/jobsItem/JobsItem.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +62,7 @@
       <workItem from="1684684727003" duration="4155000" />
       <workItem from="1684691884970" duration="3112000" />
       <workItem from="1684695458501" duration="672000" />
-      <workItem from="1684743889310" duration="21501000" />
+      <workItem from="1684743889310" duration="25386000" />
     </task>
     <servers />
   </component>

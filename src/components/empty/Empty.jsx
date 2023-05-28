@@ -13,5 +13,6 @@ export const Empty = ({onEmptyPage,onDeleteFilter}) => {
                 <button>Поиск Вакансий</button>
             </NavLink>
         </div>
+
     )
 }
