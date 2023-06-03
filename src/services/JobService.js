@@ -91,6 +91,7 @@ class JobService {
             paymentFrom: res.payment_from,
             vacancyDescr: res.vacancyRichText
         };
+
     }
 }
 
