@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23f639fe-d9e9-41e7-8c02-444c00f4ea63" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/kata.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,12 +50,16 @@
       <recent name="C:\Users\100nout\Desktop\jobored-app\src\components\app" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.kata.js (1)">
+    <configuration name="kata.js (1)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/kata.js" working-dir="$PROJECT_DIR$/src">
+      <method v="2" />
+    </configuration>
     <configuration name="kata.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/kata.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.kata.js (1)" />
         <item itemvalue="Node.js.kata.js" />
       </list>
     </recent_temporary>
@@ -74,6 +79,7 @@
       <workItem from="1684695458501" duration="672000" />
       <workItem from="1684743889310" duration="25386000" />
       <workItem from="1685304967162" duration="12347000" />
+      <workItem from="1685821413981" duration="2483000" />
     </task>
     <servers />
   </component>
