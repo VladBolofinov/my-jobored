@@ -12,6 +12,7 @@ import {Spinner} from "../spinner/Spinner";
 import JobService from "../../services/JobService";
 import './App.scss';
 
+
 //import {connect, useSelector, useDispatch} from "react-redux";
 //import {reducer} from "../../redux/reducer";
 //import {onDeleteFilter} from "../../redux/actions";
