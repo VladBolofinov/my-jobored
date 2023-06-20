@@ -12,20 +12,40 @@ import {Spinner} from "../spinner/Spinner";
 import JobService from "../../services/JobService";
 import './App.scss';
 
+
+//import {connect, useSelector, useDispatch} from "react-redux";
+//import {reducer} from "../../redux/reducer";
+//import {onDeleteFilter} from "../../redux/actions";
+//import {createStore} from 'redux';
+
+//const store = createStore(reducer);
+
 export const App = () => {
+
+    //const {} = useSelector(state => state); //useSelector достает стейт
+    //const dispatch = useDispatch();
+
+
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
     const [vacancyList, setVacancyList] = useState([]);
     const [totalVacancies, setTotalVacancies] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
-    const [profNameValue, setProfNameValue] = useState('');
-    const [salaryFrom, setSalaryFrom] = useState('');
-    const [salaryTo, setSalaryTo] = useState('');
-    const [inputValue, setInputValue] = useState('');
+    const [profNameValue, setProfNameValue] = useState('');//
+    const [salaryFrom, setSalaryFrom] = useState('');//
+    const [salaryTo, setSalaryTo] = useState('');//
+    const [inputValue, setInputValue] = useState('');//
     const [keyValue, setKeyValue] = useState('');
     const [emptyPage, setEmptyPage] = useState(false);
 
     const jobService = new JobService();
+
+    const onDeleteFilter= () => {
+        setInputValue('');
+        setSalaryFrom('');
+        setSalaryTo('');
+        setProfNameValue('');
+    }
     const mainRequest = (page) => {
         setIsLoading(true);
         jobService.getVacancies(profNameValue,
@@ -50,12 +70,6 @@ export const App = () => {
         mainRequest(1);
     }, []);
 
-    const onDeleteFilter= () => {
-        setInputValue('');
-        setSalaryFrom('');
-        setSalaryTo('');
-        setProfNameValue('');
-    }
     const onEmptyPage = () => {
         setEmptyPage(false);
     }
@@ -95,75 +109,75 @@ export const App = () => {
     }
 
     return (
-        <Router>
-            <div className="App">
-                <Routes>
-                    <>
-                        <Route
-                            path="/"
-                            element={
-                                <>
-                                    <Header />
-                                    {!emptyPage ? (
-                                        <>
-                                            <Filter
-                                                options={data}
-                                                keys={keys}
-                                                mainRequest={mainRequest}
-                                                handleValue={handleValue}
-                                                handleSalaryFrom={handleSalaryFrom}
-                                                handleSalaryTo={handleSalaryTo}
-                                                onDeleteFilter={onDeleteFilter}
-                                                inputValue={inputValue}
-                                                salaryFrom={salaryFrom}
-                                                salaryTo={salaryTo}
-                                            />
-                                            {isLoading ? (
-                                                <Spinner />
-                                            ) : (
-                                                <>
-                                                    <Jobs
-                                                        vacancyList={vacancyList}
-                                                        handleClickStar={handleClickStar}
-                                                        onSetLocalStorage={onSetLocalStorage}
-                                                        handleProfNameValue={handleProfNameValue}
-                                                        mainRequest={mainRequest}
-                                                        profNameValue={profNameValue}
-                                                    />
-                                                </>
-                                            )}
-                                            <Pagination
-                                                total={Math.ceil(totalVacancies / 4)}
-                                                onChange={mainRequest}
-                                            />
-                                        </>
-                                    ) : (
-                                        <Empty onEmptyPage={onEmptyPage}
-                                               onDeleteFilter={onDeleteFilter}/>
-                                    )}
-                                </>
-                            }
-                        />
-                        <Route
-                            path="/id/:id"
-                            element={<JobsItem vacancyList={vacancyList}
-                                               handleClickStar={handleClickStar}
-                                               onSetLocalStorage={onSetLocalStorage}/>}
-                        />
-                        <Route
-                            path="/favorites"
-                            element={
-                                <>
-                                    <Header />
-                                    <FavoriteVacancy handleClickStar={handleClickStar}
-                                                     onEmptyPage={onEmptyPage}
-                                                     onDeleteFilter={onDeleteFilter}/>
-                                </>
-                            }
-                        />
-                    </>
-                </Routes>
-            </div>
-        </Router>
+            <Router>
+                <div className="App">
+                    <Routes>
+                        <>
+                            <Route
+                                path="/"
+                                element={
+                                    <>
+                                        <Header />
+                                        {!emptyPage ? (
+                                            <>
+                                                <Filter
+                                                    options={data}
+                                                    keys={keys}
+                                                    mainRequest={mainRequest}
+                                                    handleValue={handleValue}
+                                                    handleSalaryFrom={handleSalaryFrom}
+                                                    handleSalaryTo={handleSalaryTo}
+                                                    onDeleteFilter={onDeleteFilter}
+                                                    inputValue={inputValue}
+                                                    salaryFrom={salaryFrom}
+                                                    salaryTo={salaryTo}
+                                                />
+                                                {isLoading ? (
+                                                    <Spinner />
+                                                ) : (
+                                                    <>
+                                                        <Jobs
+                                                            vacancyList={vacancyList}
+                                                            handleClickStar={handleClickStar}
+                                                            onSetLocalStorage={onSetLocalStorage}
+                                                            handleProfNameValue={handleProfNameValue}
+                                                            mainRequest={mainRequest}
+                                                            profNameValue={profNameValue}
+                                                        />
+                                                    </>
+                                                )}
+                                                <Pagination
+                                                    total={Math.ceil(totalVacancies / 4)}
+                                                    onChange={mainRequest}
+                                                />
+                                            </>
+                                        ) : (
+                                            <Empty onEmptyPage={onEmptyPage}
+                                                   onDeleteFilter={onDeleteFilter}/>
+                                        )}
+                                    </>
+                                }
+                            />
+                            <Route
+                                path="/id/:id"
+                                element={<JobsItem vacancyList={vacancyList}
+                                                   handleClickStar={handleClickStar}
+                                                   onSetLocalStorage={onSetLocalStorage}/>}
+                            />
+                            <Route
+                                path="/favorites"
+                                element={
+                                    <>
+                                        <Header />
+                                        <FavoriteVacancy handleClickStar={handleClickStar}
+                                                         onEmptyPage={onEmptyPage}
+                                                         onDeleteFilter={onDeleteFilter}/>
+                                    </>
+                                }
+                            />
+                        </>
+                    </Routes>
+                </div>
+            </Router>
     );
 }
