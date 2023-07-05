@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23f639fe-d9e9-41e7-8c02-444c00f4ea63" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/reducers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,11 +20,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -31,6 +36,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2P0DVxBOaiycbUE9WD1p4SAOr2O" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,7 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/100nout/Desktop/hero_admin_panel_template/hero_admin_panel_template",
+    "last_opened_file_path": "C:/Users/100nout/Desktop/hero_admin_panel_template/hero_admin_panel_template/JS_task_answers/React_Redux_step_30",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -55,11 +63,11 @@
       <recent name="C:\Users\100nout\Desktop\jobored-app\src\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\100nout\Desktop\my-jobored\src\actions" />
+      <recent name="C:\Users\100nout\Desktop\my-jobored\src\reducers" />
       <recent name="C:\Users\100nout\Desktop\my-jobored\src" />
       <recent name="C:\Users\100nout\Desktop\jobored-app\src\img\icons" />
       <recent name="C:\Users\100nout\Desktop\jobored-app\src\components\jobs" />
-      <recent name="C:\Users\100nout\Desktop\jobored-app\src\img" />
-      <recent name="C:\Users\100nout\Desktop\jobored-app\src\components\app" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.kata.js (1)">
@@ -94,6 +102,7 @@
       <workItem from="1685821413981" duration="12937000" />
       <workItem from="1686333726826" duration="3340000" />
       <workItem from="1686926217437" duration="5662000" />
+      <workItem from="1688562982845" duration="4142000" />
     </task>
     <servers />
   </component>

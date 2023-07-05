@@ -12,18 +12,11 @@ import {Spinner} from "../spinner/Spinner";
 import JobService from "../../services/JobService";
 import './App.scss';
 
-
-//import {connect, useSelector, useDispatch} from "react-redux";
-//import {reducer} from "../../redux/reducer";
-//import {onDeleteFilter} from "../../redux/actions";
-//import {createStore} from 'redux';
-
-//const store = createStore(reducer);
+import {useDispatch, useSelector} from 'react-redux';
+import {onLoadingData} from "../../actions";
 
 export const App = () => {
-
-    //const {} = useSelector(state => state); //useSelector достает стейт
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
 
     const [data, setData] = useState([]);
@@ -47,7 +40,8 @@ export const App = () => {
         setProfNameValue('');
     }
     const mainRequest = (page) => {
-        setIsLoading(true);
+        //setIsLoading(true);
+        dispatch(onLoadingData(true));
         jobService.getVacancies(profNameValue,
             salaryFrom,
             salaryTo,
@@ -57,7 +51,8 @@ export const App = () => {
             setVacancyList(vacancy.vacancies);
             setTotalVacancies(vacancy.totalVacancies);
             (vacancy.totalVacancies) ? setEmptyPage(false) : setEmptyPage(true);
-            setIsLoading(false)
+            dispatch(onLoadingData(false));
+            //setIsLoading(false)
             });
     }
 
