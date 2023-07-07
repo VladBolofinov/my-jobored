@@ -1,17 +1,20 @@
 import {Link} from "react-router-dom";
 import {IconSearch} from '@tabler/icons-react';
 import {TextInput, Button} from '@mantine/core';
+import {useSelector} from "react-redux";
 
 import location from '../../img/icons/location.svg';
 import './Jobs.scss';
 
-export const Jobs = ({vacancyList,
+
+export const Jobs = ({
                handleClickStar,
                onSetLocalStorage,
                handleProfNameValue,
                mainRequest,
                profNameValue}) => {
 
+    const {vacancyList} = useSelector(state => state);
     const renderItems = (list) => (
         list.map(item => {
             return (

@@ -13,22 +13,18 @@ import JobService from "../../services/JobService";
 import './App.scss';
 
 import {useDispatch, useSelector} from 'react-redux';
-import {onLoadingData,onTotalVacancies,onEmptyPage} from "../../actions";
+import {onLoadingData,onTotalVacancies,onEmptyPage,onAddCategories,onAddCategoriesKeys,onAddVacancyList} from "../../actions";
 
 export const App = () => {
     const dispatch = useDispatch();
-    const {isLoadingData,totalVacancies,isEmptyPage} = useSelector(state => state);
+    const {isLoadingData,totalVacancies,isEmptyPage,categories,categoriesKeys,vacancyList} = useSelector(state => state);
 
-    const [data, setData] = useState([]);
-    const [keys, setKeys] = useState([]);
-    const [vacancyList, setVacancyList] = useState([]);
     const [profNameValue, setProfNameValue] = useState('');
+
     const [salaryFrom, setSalaryFrom] = useState('');
     const [salaryTo, setSalaryTo] = useState('');
     const [inputValue, setInputValue] = useState('');
     const [keyValue, setKeyValue] = useState('');
-
-    const [emptyPage, setEmptyPage] = useState(false);
 
     const jobService = new JobService();
 
@@ -46,7 +42,7 @@ export const App = () => {
             keyValue,
             page-1)
             .then((vacancy) => {
-            setVacancyList(vacancy.vacancies);
+            dispatch(onAddVacancyList(vacancy.vacancies));
             dispatch(onTotalVacancies(vacancy.totalVacancies));
             (vacancy.totalVacancies) ? dispatch(onEmptyPage(false)) : dispatch(onEmptyPage(true));
             dispatch(onLoadingData(false));
@@ -56,8 +52,8 @@ export const App = () => {
     useEffect(() => {
         jobService.getToken();
         jobService.getCatalogues().then((catalogues) => {
-            setData(catalogues.name);
-            setKeys(catalogues.keys);
+            dispatch(onAddCategories(catalogues.name));
+            dispatch(onAddCategoriesKeys(catalogues.keys));
         });
         mainRequest(1);
     }, []);
@@ -76,19 +72,13 @@ export const App = () => {
 
     const handleValue = (e) => {
         setInputValue(e);
-        setKeyValue(keys[data.indexOf(e)]);
+        setKeyValue(categoriesKeys[categories.indexOf(e)]);
     }
 
     const handleClickStar = (id) => {
-        setVacancyList(prevState => {
-            const updatedList = prevState.map(item => {
-                if (item.id == id ) {
-                    return {...item, [id]: !item[id]};
-                }
-                return item;
-            });
-            return updatedList;
-        });
+        dispatch(onAddVacancyList(vacancyList.map(item => {
+            return (item.id == id) ? {...item, [id]: !item[id]} : item;
+            })));
     };
 
     const onSetLocalStorage = (item) => {
@@ -110,8 +100,6 @@ export const App = () => {
                                         {!isEmptyPage ? (
                                             <>
                                                 <Filter
-                                                    options={data}
-                                                    keys={keys}
                                                     mainRequest={mainRequest}
                                                     handleValue={handleValue}
                                                     handleSalaryFrom={handleSalaryFrom}
@@ -126,7 +114,6 @@ export const App = () => {
                                                 ) : (
                                                     <>
                                                         <Jobs
-                                                            vacancyList={vacancyList}
                                                             handleClickStar={handleClickStar}
                                                             onSetLocalStorage={onSetLocalStorage}
                                                             handleProfNameValue={handleProfNameValue}
@@ -148,8 +135,7 @@ export const App = () => {
                             />
                             <Route
                                 path="/id/:id"
-                                element={<JobsItem vacancyList={vacancyList}
-                                                   handleClickStar={handleClickStar}
+                                element={<JobsItem handleClickStar={handleClickStar}
                                                    onSetLocalStorage={onSetLocalStorage}/>}
                             />
                             <Route

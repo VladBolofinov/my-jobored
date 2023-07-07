@@ -1,10 +1,14 @@
 import location from "../../../img/icons/location.svg";
 import './JobsItem.scss';
 import { useParams } from 'react-router-dom';
+import {useSelector} from "react-redux";
 import {Header} from "../../header/Header";
-export const JobsItem = ({vacancyList, handleClickStar, onSetLocalStorage}) => {
 
+export const JobsItem = ({handleClickStar, onSetLocalStorage}) => {
+
+    const {vacancyList} = useSelector(state => state);
     const { id } = useParams();
+
     let item = vacancyList.find(item => item.id == id);
     if (!item) {
         item = JSON.parse(localStorage.getItem(id));

@@ -18,3 +18,24 @@ export const onEmptyPage = (value) => {
         payload: value
     }
 }
+
+export const onAddCategories = (categories) => {
+    return {
+        type: 'ADD_CATEGORIES',
+        payload: categories
+    }
+}
+
+export const onAddCategoriesKeys = (keys) => {
+    return {
+        type: 'ADD_CATEGORIES_KEYS',
+        payload: keys
+    }
+}
+
+export const onAddVacancyList = (vacancies) => {
+    return {
+        type: 'ADD_VACANCY_LIST',
+        payload: vacancies
+    }
+}

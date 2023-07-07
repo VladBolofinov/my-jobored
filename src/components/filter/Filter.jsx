@@ -1,10 +1,11 @@
 import {useState} from "react";
 import {IconChevronUp, IconSelector, IconChevronDown} from '@tabler/icons-react';
 import {Select, TextInput, Button} from '@mantine/core';
+import {useSelector} from 'react-redux';
 
 import './Filter.scss';
 
-export const Filter = ({options,
+export const Filter = ({
                 mainRequest,
                 handleSalaryFrom,
                 handleSalaryTo,
@@ -14,6 +15,7 @@ export const Filter = ({options,
                 salaryFrom,
                 salaryTo}) => {
 
+    const {categories} = useSelector(state => state);
     const [onChevron, setOnChevron] = useState(false);
 
     return (
@@ -29,7 +31,7 @@ export const Filter = ({options,
                 onChange={handleValue}
                 mt="md"
                 withinPortal
-                data={options}
+                data={categories}
                 placeholder="Выберите отрасль"
                 maxDropdownHeight={'188px'}
                 onDropdownClose={()=>setOnChevron(false)}

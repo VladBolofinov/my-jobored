@@ -1,7 +1,10 @@
 const initialState = {
     isLoadingData: '',
     totalVacancies: 0,
-    isEmptyPage: false
+    isEmptyPage: false,
+    categories: [],
+    categoriesKeys: [],
+    vacancyList: []
 }
 
 const vacancies =(state = initialState, action) => {
@@ -20,6 +23,21 @@ const vacancies =(state = initialState, action) => {
             return {
                 ...state,
                 isEmptyPage: action.payload
+            }
+        case 'ADD_CATEGORIES':
+            return {
+                ...state,
+                categories: action.payload
+            }
+        case 'ADD_CATEGORIES_KEYS':
+            return {
+                ...state,
+                categoriesKeys: action.payload
+            }
+        case 'ADD_VACANCY_LIST':
+            return {
+                ...state,
+                vacancyList: action.payload
             }
         default: return state
     }
