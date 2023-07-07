@@ -1,5 +1,7 @@
 const initialState = {
-    isLoadingData: ''
+    isLoadingData: '',
+    totalVacancies: 0,
+    isEmptyPage: false
 }
 
 const vacancies =(state = initialState, action) => {
@@ -8,6 +10,16 @@ const vacancies =(state = initialState, action) => {
             return {
                 ...state,
                 isLoadingData: action.payload
+            }
+        case 'TOTAL_VACANCIES':
+            return {
+                ...state,
+                totalVacancies: action.payload
+            }
+        case 'ON_EMPTY_PAGE':
+            return {
+                ...state,
+                isEmptyPage: action.payload
             }
         default: return state
     }

@@ -13,22 +13,21 @@ import JobService from "../../services/JobService";
 import './App.scss';
 
 import {useDispatch, useSelector} from 'react-redux';
-import {onLoadingData} from "../../actions";
+import {onLoadingData,onTotalVacancies,onEmptyPage} from "../../actions";
 
 export const App = () => {
     const dispatch = useDispatch();
-
+    const {isLoadingData,totalVacancies,isEmptyPage} = useSelector(state => state);
 
     const [data, setData] = useState([]);
     const [keys, setKeys] = useState([]);
     const [vacancyList, setVacancyList] = useState([]);
-    const [totalVacancies, setTotalVacancies] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
-    const [profNameValue, setProfNameValue] = useState('');//
-    const [salaryFrom, setSalaryFrom] = useState('');//
-    const [salaryTo, setSalaryTo] = useState('');//
-    const [inputValue, setInputValue] = useState('');//
+    const [profNameValue, setProfNameValue] = useState('');
+    const [salaryFrom, setSalaryFrom] = useState('');
+    const [salaryTo, setSalaryTo] = useState('');
+    const [inputValue, setInputValue] = useState('');
     const [keyValue, setKeyValue] = useState('');
+
     const [emptyPage, setEmptyPage] = useState(false);
 
     const jobService = new JobService();
@@ -40,7 +39,6 @@ export const App = () => {
         setProfNameValue('');
     }
     const mainRequest = (page) => {
-        //setIsLoading(true);
         dispatch(onLoadingData(true));
         jobService.getVacancies(profNameValue,
             salaryFrom,
@@ -49,10 +47,9 @@ export const App = () => {
             page-1)
             .then((vacancy) => {
             setVacancyList(vacancy.vacancies);
-            setTotalVacancies(vacancy.totalVacancies);
-            (vacancy.totalVacancies) ? setEmptyPage(false) : setEmptyPage(true);
+            dispatch(onTotalVacancies(vacancy.totalVacancies));
+            (vacancy.totalVacancies) ? dispatch(onEmptyPage(false)) : dispatch(onEmptyPage(true));
             dispatch(onLoadingData(false));
-            //setIsLoading(false)
             });
     }
 
@@ -65,9 +62,6 @@ export const App = () => {
         mainRequest(1);
     }, []);
 
-    const onEmptyPage = () => {
-        setEmptyPage(false);
-    }
     const handleProfNameValue = (e) => {
         setProfNameValue(e);
     }
@@ -113,7 +107,7 @@ export const App = () => {
                                 element={
                                     <>
                                         <Header />
-                                        {!emptyPage ? (
+                                        {!isEmptyPage ? (
                                             <>
                                                 <Filter
                                                     options={data}
@@ -127,7 +121,7 @@ export const App = () => {
                                                     salaryFrom={salaryFrom}
                                                     salaryTo={salaryTo}
                                                 />
-                                                {isLoading ? (
+                                                {isLoadingData ? (
                                                     <Spinner />
                                                 ) : (
                                                     <>
@@ -147,8 +141,7 @@ export const App = () => {
                                                 />
                                             </>
                                         ) : (
-                                            <Empty onEmptyPage={onEmptyPage}
-                                                   onDeleteFilter={onDeleteFilter}/>
+                                            <Empty onDeleteFilter={onDeleteFilter}/>
                                         )}
                                     </>
                                 }
@@ -165,7 +158,6 @@ export const App = () => {
                                     <>
                                         <Header />
                                         <FavoriteVacancy handleClickStar={handleClickStar}
-                                                         onEmptyPage={onEmptyPage}
                                                          onDeleteFilter={onDeleteFilter}/>
                                     </>
                                 }

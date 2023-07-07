@@ -6,7 +6,7 @@ import location from "../../img/icons/location.svg";
 import {Empty} from "../empty/Empty";
 import './FavoriteVacancy.scss';
 
-export const FavoriteVacancy = ({handleClickStar, onEmptyPage, onDeleteFilter}) => {
+export const FavoriteVacancy = ({handleClickStar, onDeleteFilter}) => {
     const [startNumber, setStartNumber] = useState(0);
     const [endNumber, setEndNumber] = useState(4);
     const [dataLS, setDataLS] = useState([]);
@@ -63,8 +63,7 @@ export const FavoriteVacancy = ({handleClickStar, onEmptyPage, onDeleteFilter}) 
 
     return (
         <section className='job-wrapper-favorite'>
-            {(dataLS.length !== 0) ? renderItems() : <Empty onEmptyPage={onEmptyPage}
-                                                            onDeleteFilter={onDeleteFilter} />}
+            {(dataLS.length !== 0) ? renderItems() : <Empty onDeleteFilter={onDeleteFilter} />}
             <div className="wrapper-favorite-pagination">
                 <Pagination
                     total={Math.ceil(dataLS.length / 4)}
