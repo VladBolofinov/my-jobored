@@ -4,7 +4,12 @@ const initialState = {
     isEmptyPage: false,
     categories: [],
     categoriesKeys: [],
-    vacancyList: []
+    vacancyList: [],
+    profNameValue: '',
+    salaryFrom: '',
+    salaryTo: '',
+    inputValue: '',
+    keyValue: ''
 }
 
 const vacancies =(state = initialState, action) => {
@@ -38,6 +43,31 @@ const vacancies =(state = initialState, action) => {
             return {
                 ...state,
                 vacancyList: action.payload
+            }
+        case 'ADD_PROFNAME_VALUE':
+            return {
+                ...state,
+                profNameValue: action.payload
+            }
+        case 'ADD_SALARY_FROM':
+            return {
+                ...state,
+                salaryFrom: action.payload
+            }
+        case 'ADD_SALARY_TO':
+            return {
+                ...state,
+                salaryTo: action.payload
+            }
+        case 'ADD_INPUT_VALUE':
+            return {
+                ...state,
+                inputValue: action.payload
+            }
+        case 'ADD_KEY_VALUE':
+            return {
+                ...state,
+                keyValue: action.payload
             }
         default: return state
     }

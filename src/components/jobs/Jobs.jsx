@@ -1,7 +1,8 @@
 import {Link} from "react-router-dom";
 import {IconSearch} from '@tabler/icons-react';
 import {TextInput, Button} from '@mantine/core';
-import {useSelector} from "react-redux";
+import {useSelector,useDispatch} from "react-redux";
+import {onAddProfNameValue} from "../../actions";
 
 import location from '../../img/icons/location.svg';
 import './Jobs.scss';
@@ -10,11 +11,10 @@ import './Jobs.scss';
 export const Jobs = ({
                handleClickStar,
                onSetLocalStorage,
-               handleProfNameValue,
-               mainRequest,
-               profNameValue}) => {
+               mainRequest}) => {
 
-    const {vacancyList} = useSelector(state => state);
+    const dispatch = useDispatch();
+    const {vacancyList,profNameValue} = useSelector(state => state);
     const renderItems = (list) => (
         list.map(item => {
             return (
@@ -45,7 +45,7 @@ export const Jobs = ({
             <TextInput
                 data-elem={"search-input"}
                 value={profNameValue}
-                onChange={(event) =>handleProfNameValue(event.currentTarget.value)}
+                onChange={(event) =>dispatch(onAddProfNameValue(event.currentTarget.value))}
                 icon={<IconSearch size="1.1rem" stroke={1.5} />}
                 radius="8px"
                 size="md"

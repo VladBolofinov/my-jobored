@@ -1,22 +1,19 @@
 import {useState} from "react";
 import {IconChevronUp, IconSelector, IconChevronDown} from '@tabler/icons-react';
 import {Select, TextInput, Button} from '@mantine/core';
-import {useSelector} from 'react-redux';
-
+import {useSelector,useDispatch} from 'react-redux';
+import {onAddSalaryFrom,onAddSalaryTo} from "../../actions";
 import './Filter.scss';
 
 export const Filter = ({
                 mainRequest,
-                handleSalaryFrom,
-                handleSalaryTo,
                 handleValue,
-                onDeleteFilter,
-                inputValue,
-                salaryFrom,
-                salaryTo}) => {
+                onDeleteFilter}) => {
 
-    const {categories} = useSelector(state => state);
+    const dispatch = useDispatch();
+    const {categories,salaryFrom,salaryTo,inputValue} = useSelector(state => state);
     const [onChevron, setOnChevron] = useState(false);
+
 
     return (
         <div className='filter-wrapper'>
@@ -55,7 +52,7 @@ export const Filter = ({
             <p className='filter-subheader second'>Оклад</p>
             <TextInput
                 data-elem={"salary-from-input"}
-                onChange={(event) => handleSalaryFrom(event.currentTarget.value)}
+                onChange={(event) =>dispatch(onAddSalaryFrom(event.currentTarget.value))}
                 value={salaryFrom}
                 placeholder="От"
                 rightSection={<IconSelector color={'#ACADB9'} size="1.5rem" stroke-width="1.5" />}
@@ -63,7 +60,7 @@ export const Filter = ({
             <TextInput
                 data-elem={"salary-to-input"}
                 value={salaryTo}
-                onChange={(event) => handleSalaryTo(event.currentTarget.value)}
+                onChange={(event) =>dispatch(onAddSalaryTo(event.currentTarget.value))}
                 placeholder="До"
                 rightSection={<IconSelector color={'#ACADB9'} size="1.5rem" stroke-width="1.5" />}
             />

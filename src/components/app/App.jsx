@@ -13,26 +13,28 @@ import JobService from "../../services/JobService";
 import './App.scss';
 
 import {useDispatch, useSelector} from 'react-redux';
-import {onLoadingData,onTotalVacancies,onEmptyPage,onAddCategories,onAddCategoriesKeys,onAddVacancyList} from "../../actions";
+import {onLoadingData,
+        onTotalVacancies,
+        onEmptyPage,
+        onAddCategories,
+        onAddCategoriesKeys,
+        onAddVacancyList,
+        onAddProfNameValue,
+        onAddSalaryFrom,
+        onAddSalaryTo,
+        onAddInputValue,
+        onAddKeyValue} from "../../actions";
 
 export const App = () => {
     const dispatch = useDispatch();
-    const {isLoadingData,totalVacancies,isEmptyPage,categories,categoriesKeys,vacancyList} = useSelector(state => state);
-
-    const [profNameValue, setProfNameValue] = useState('');
-
-    const [salaryFrom, setSalaryFrom] = useState('');
-    const [salaryTo, setSalaryTo] = useState('');
-    const [inputValue, setInputValue] = useState('');
-    const [keyValue, setKeyValue] = useState('');
-
+    const {isLoadingData,totalVacancies,isEmptyPage,categories,categoriesKeys,vacancyList,profNameValue,salaryFrom,salaryTo,keyValue} = useSelector(state => state);
     const jobService = new JobService();
 
     const onDeleteFilter= () => {
-        setInputValue('');
-        setSalaryFrom('');
-        setSalaryTo('');
-        setProfNameValue('');
+        dispatch(onAddInputValue(''))
+        dispatch(onAddSalaryFrom(''));
+        dispatch(onAddSalaryTo(''));
+        dispatch(onAddProfNameValue(''));
     }
     const mainRequest = (page) => {
         dispatch(onLoadingData(true));
@@ -58,21 +60,9 @@ export const App = () => {
         mainRequest(1);
     }, []);
 
-    const handleProfNameValue = (e) => {
-        setProfNameValue(e);
-    }
-
-    const handleSalaryFrom = (e) => {
-        setSalaryFrom(e);
-    }
-
-    const handleSalaryTo = (e) => {
-        setSalaryTo(e);
-    }
-
     const handleValue = (e) => {
-        setInputValue(e);
-        setKeyValue(categoriesKeys[categories.indexOf(e)]);
+        dispatch(onAddInputValue(e));
+        dispatch(onAddKeyValue(categoriesKeys[categories.indexOf(e)]));
     }
 
     const handleClickStar = (id) => {
@@ -102,11 +92,7 @@ export const App = () => {
                                                 <Filter
                                                     mainRequest={mainRequest}
                                                     handleValue={handleValue}
-                                                    handleSalaryFrom={handleSalaryFrom}
-                                                    handleSalaryTo={handleSalaryTo}
                                                     onDeleteFilter={onDeleteFilter}
-                                                    inputValue={inputValue}
-                                                    salaryFrom={salaryFrom}
                                                     salaryTo={salaryTo}
                                                 />
                                                 {isLoadingData ? (
@@ -116,9 +102,7 @@ export const App = () => {
                                                         <Jobs
                                                             handleClickStar={handleClickStar}
                                                             onSetLocalStorage={onSetLocalStorage}
-                                                            handleProfNameValue={handleProfNameValue}
                                                             mainRequest={mainRequest}
-                                                            profNameValue={profNameValue}
                                                         />
                                                     </>
                                                 )}

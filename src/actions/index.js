@@ -39,3 +39,38 @@ export const onAddVacancyList = (vacancies) => {
         payload: vacancies
     }
 }
+
+export const onAddProfNameValue = (value) => {
+    return {
+        type: 'ADD_PROFNAME_VALUE',
+        payload: value
+    }
+}
+
+export const onAddSalaryFrom = (salary) => {
+    return {
+        type: 'ADD_SALARY_FROM',
+        payload: salary
+    }
+}
+
+export const onAddSalaryTo = (salary) => {
+    return {
+        type: 'ADD_SALARY_TO',
+        payload: salary
+    }
+}
+
+export const onAddInputValue = (value) => {
+    return {
+        type: 'ADD_INPUT_VALUE',
+        payload: value
+    }
+}
+
+export const onAddKeyValue = (value) => {
+    return {
+        type: 'ADD_KEY_VALUE',
+        payload: value
+    }
+}
